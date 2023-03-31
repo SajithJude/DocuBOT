@@ -32,7 +32,8 @@ index_filenames = [f for f in os.listdir(DATA_DIR) if f.endswith(".json")]
 if index_filenames:
     # If there are index files available, create a dropdown to select the index file to load
     index_file = st.selectbox("Select an index file to load:", index_filenames)
-    index = GPTSimpleVectorIndex.load_from_disk(index_file)
+    index_path = os.path.join(DATA_DIR, index_file)
+    index = GPTSimpleVectorIndex.load_from_disk(index_path)
 else:
     # If there are no index files available, prompt the user to upload a PDF file
     st.warning("No index files found. Please upload a PDF file to create an index.")
