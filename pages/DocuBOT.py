@@ -21,6 +21,7 @@ if button:
     st.success("Index loaded succesfully.")
 
 ques = st.text_input("enter question")
-if ques:
+send = st.button("ask")
+if send:
     res = index.query(ques)
     st.write(res)
