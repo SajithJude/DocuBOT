@@ -62,7 +62,7 @@ with st.sidebar.expander("Settings ", expanded=False):
     #     with st.expander("Bufffer-Store", expanded=False):
     #         st.session_state.entity_memory.buffer
     MODEL = st.selectbox(label='Model', options=['gpt-3.5-turbo','text-davinci-003','text-davinci-002','code-davinci-002'])
-    K = st.number_input(' (#)Summary of prompts to consider',min_value=3,max_value=1000)
+    K = st.number_input(' Number of Questions per quiz session',min_value=3,max_value=1000)
     # Option to load an index
     # if st.checkbox("Load Index"):
 
