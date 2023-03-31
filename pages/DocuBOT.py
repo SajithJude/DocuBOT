@@ -16,6 +16,12 @@ openai.api_key = os.getenv("API_KEY")
 if "history" not in st.session_state:
     st.session_state.history = []
 
+def new_chat():
+    """
+    Clears session state and starts a new chat.
+    """
+    st.session_state.history = []
+
 col1, col2 = st.columns([2.2, 1])
 col2.image("Flipick_Logo-1 (1).jpg", width=210)
 st.write("")
@@ -50,23 +56,20 @@ def generate_answer():
     )
     QA_PROMPT = QuestionAnswerPrompt(QA_PROMPT_TMPL)
     message_bot = index.query(query_str, text_qa_template=QA_PROMPT, response_mode="compact", mode="embedding")
-    # source = message_bot.get_formatted_sources()
-    # st.sidebar.write("Answer Source :",source)  # added line to display source on sidebar
     st.session_state.history.append({"message": user_message, "is_user": True})
     st.session_state.history.append({"message": str(message_bot), "is_user": False})
 
-# if expander.expanded:
+if st.sidebar.button("New Chat"):
+    new_chat()
+
 input_text = st.text_input("Ask DocuBOT a question", key="input_text", on_change=generate_answer)
-# st.caption("Disclaimer : This ChatBOT is a pilot built solely for the purpose of a demo to Indian Institute of Banking and Finance (IIBF). The BOT has been trained based on the book Treasury Management published by IIBF. All content rights vest with IIBF")
 
+with st.sidebar.expander("Conversation History", expanded=False):
+    for chat in st.session_state.history:
+        if chat["is_user"]:
+            st.write("User: " + chat["message"])
+        else:
+            st.write("Bot: " + chat["message"])
 
-# Display the conversation history
 for chat in st.session_state.history:
     st_message(**chat)
-
-
-
-
-
-
-
