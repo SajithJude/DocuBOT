@@ -21,10 +21,15 @@ col2.image("Flipick_Logo-1 (1).jpg", width=210)
 st.write("")
 st.write("")
 
-# Get a list of all index files in the content directory
-index_files = glob.("*.json")
 
-if index_files:
+DATA_DIR = "data"
+# Get a list of available index files in the data directory
+index_filenames = [f for f in os.listdir(DATA_DIR) if f.endswith(".json")]
+
+# Get a list of all index files in the content directory
+# index_files = glob.("*.json")
+
+if index_filenames:
     # If there are index files available, create a dropdown to select the index file to load
     index_file = st.selectbox("Select an index file to load:", index_files)
     index = GPTSimpleVectorIndex.load_from_disk(index_file)
