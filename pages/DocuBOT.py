@@ -25,4 +25,4 @@ try:
     res = index.query(ques)
     st.write(res)
 except NameError:
-    st.warninng("Select and index to get started")
+    st.warning("Select and index to get started")
