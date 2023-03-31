@@ -17,7 +17,7 @@ selected_index = st.selectbox("Select an index to load", index_filenames)
 
 if selected_index:
     index_path = os.path.join(DATA_DIR, index_filename)
-    index = GPTSimpleVectorIndex.load_from_disk(index_path)
+    index = GPTSimpleVectorIndex.load_from_disk(selected_index)
     st.success("Index loaded succesfully.")
 
 try:
