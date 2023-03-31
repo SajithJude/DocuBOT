@@ -40,7 +40,7 @@ if ques:
     #     st.session_state.index = load_index(selected_index)
 
     # Query the loaded index with the entered question
-    index = st.session_state.index
+    # index = st.session_state.index
     res = index.query(ques)
 
     # Display the results on the Streamlit app
