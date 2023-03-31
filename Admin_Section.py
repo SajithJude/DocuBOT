@@ -106,4 +106,4 @@ if __name__ == "__main__":
     if password == "flipick":
         main()
     else:
-        st.warning("Admins Please enter Password to manage books, Learners are only allowed to use the bot, please go to the DocuBOT section in the Menu")
+        st.warning("Admins Please enter Password to manage books, Learners are only allowed to use the bot, please Visit the DocuBOT section in the Menu")
