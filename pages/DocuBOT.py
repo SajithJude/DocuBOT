@@ -21,5 +21,6 @@ if selected_index:
     st.success("Index loaded succesfully.")
 
 ques = st.text_input("enter question")
-res = index.query(ques)
-st.write(res)
+if ques:
+    res = index.query(ques)
+    st.write(res)
