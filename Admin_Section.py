@@ -57,7 +57,7 @@ def main():
         st.success("File saved successfully!")
     
     # Create a button to create the index
-    if st.button("Create Index"):
+    # if st.button("Create Index"):
         # Get the filename of the uploaded PDF
         pdf_filename = uploaded_file.name
         
