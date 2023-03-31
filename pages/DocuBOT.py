@@ -65,8 +65,10 @@ if st.sidebar.button("New Chat"):
 input_text = st.text_input("Ask DocuBOT a question", key="input_text", on_change=generate_answer)
 
 for chat in st.session_state.history:
+
     if chat["is_user"]:
-        st.caption("Question: " + chat["message"])
+
+        st.write("Question: " + chat["message"])
     else:
         with st.sidebar.expander("Conversation History", expanded=False):
             st.write("Bot: " + chat["message"], language=None)
