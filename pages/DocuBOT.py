@@ -47,12 +47,9 @@ def generate_answer():
     user_message = st.session_state.input_text
     query_str = str(user_message)
     context_str = "Generate answers for the questions that are relevant only to the documents context, throw a default answer saying I dont know for unrelevant questions."
-    QA_PROMPT_TMPL = (
-      "When the users says quiz me, ask him a question from the context he mentioned, and corrext his answer on the next message\n"
-        "\n---------------------\n"
-        "Given this information, please respond the users query: {query_str}\n"
-    )
-    QA_PROMPT = QuestionAnswerPrompt(QA_PROMPT_TMPL)
+    QA_PROMPT =  "When the users says quiz me, ask him a question from the context he mentioned, and corrext his answer on the next message\n Given this information, please respond the users query: {query_str}\n"
+    
+    # QA_PROMPT = QuestionAnswerPrompt(QA_PROMPT_TMPL)
     message_bot = index.query(query_str, text_qa_template=QA_PROMPT, response_mode="compact", mode="embedding")
     st.session_state.history.append({"message": user_message, "is_user": True})
     st.session_state.history.append({"message": str(message_bot), "is_user": False})
