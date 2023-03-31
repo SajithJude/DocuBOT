@@ -90,7 +90,7 @@ def main():
         col1, col2, col3 = st.columns((4 , 1, 1))
         # col1.write(x)  # index
         col1.caption(Name)  # email
-        if col1.caption.endswith(".pdf"):
+        if Name.endswith(".pdf"):
             col2.button("View", key=Name, on_click=display_pdf, args=(DATA_DIR, Name))  # unique ID
             delete_status = True
         else:
