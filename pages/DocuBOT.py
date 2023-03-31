@@ -7,7 +7,7 @@ import PyPDF2
 import openai 
 from streamlit_chat import message as st_message
 
-favicon = "favicon.ac8d93a.69085235180674d80d902fdc4b848d0b.png"
+favicon = "favicon.ac8d93a.69085235180674d80d902fdc4b848d0b (1).png"
 st.set_page_config(page_title="Flipick Chat", page_icon=favicon)
 
 
@@ -17,7 +17,7 @@ if "history" not in st.session_state:
     st.session_state.history = []
 
 col1, col2 = st.columns([2.2, 1])
-col2.image("Flipick_Logo-1.jpg", width=210)
+col2.image("Flipick_Logo-1 (1).jpg", width=210)
 st.write("")
 st.write("")
 
