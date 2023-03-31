@@ -31,7 +31,7 @@ def get_text():
         (str): The text entered by the user
     """
     input_text = st.text_input("You: ", st.session_state["input"], key="input",
-                            placeholder="Your AI assistant here! Ask me anything ...", 
+                            placeholder="Ask Me to Quiz you from a chapter and correct your ...", 
                             label_visibility='hidden')
     return input_text
 
