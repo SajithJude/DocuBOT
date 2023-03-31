@@ -1,15 +1,13 @@
 import os
 import streamlit as st
+import PyPDF2
 from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader
 import openai
 from pathlib import Path
 from llama_index import download_loader
 
-
-
 openai.api_key = os.getenv("API_KEY")
 PDFReader = download_loader("PDFReader")
-
 loader = PDFReader()
 
 # Define the data directory path
@@ -19,18 +17,26 @@ DATA_DIR = "data"
 if not os.path.exists(DATA_DIR):
     os.mkdir(DATA_DIR)
 
-
+# Define a function to display the contents of a PDF file
 def display_pdf(DATA_DIR, pdf_file):
     with open(os.path.join(DATA_DIR, pdf_file), "rb") as f:
-        pdf_reader = PyPDF2.PdfReader (f)
+        pdf_reader = PyPDF2.PdfFileReader(f)
         for page_num in range(len(pdf_reader.pages)):
             page = pdf_reader.pages[page_num]
-            with st.expander('Page'):
-                st.write(page.extract_text())
+            with st.expander(f"Page {page_num+1}"):
+                st.write(page.extractText())
 
-def delete_pdf(DATA_DIR, pdf_file):
-    os.remove(os.path.join(DATA_DIR, pdf_file))
-    
+# Define a function to delete a PDF file and its corresponding JSON index file
+def delete_file(DATA_DIR, file_name):
+    pdf_path = os.path.join(DATA_DIR, file_name)
+    json_path = os.path.join(DATA_DIR, os.path.splitext(file_name)[0] + ".json")
+    if os.path.exists(pdf_path):
+        os.remove(pdf_path)
+        st.success(f"File {file_name} deleted successfully!")
+    else:
+        st.error(f"File {file_name} not found!")
+    if os.path.exists(json_path):
+        os.remove(json_path)
 
 # Define a function to save the uploaded file to the data directory
 def save_uploaded_file(uploaded_file):
@@ -64,8 +70,12 @@ def main():
         # Save the index to the data directory with the same name as the PDF
         index.save_to_disk(os.path.join(DATA_DIR, os.path.splitext(pdf_filename)[0] + ".json"))
         st.success("Index created successfully!")
+    
     # Get a list of files in the directory
     files = os.listdir(DATA_DIR)
+    
+    # Filter out the JSON index files
+    files = [f for f in files if not f.endswith(".json")]
 
     colms = st.columns((4, 1, 1))
 
@@ -75,21 +85,20 @@ def main():
         col.subheader(field_name)
 
     i=1
-    for  Name in files:
+    for Name in files:
         i+=1
         col1, col2, col3 = st.columns((4 , 1, 1))
         # col1.write(x)  # index
         col1.caption(Name)  # email
-        col2.button("View", key=Name, on_click=display_pdf, args=(DATA_DIR, Name))  # unique ID
-        # col4.button(user_table['Delete'][x])   # email status
-        delete_status = fields[0]  # flexible type of button
+        if col1.caption.endswith(".pdf"):
+            col2.button("View", key=Name, on_click=display_pdf, args=(DATA_DIR, Name))  # unique ID
+            delete_status = True
+        else:
+            col2.write("N/A")
+            delete_status = False
         button_type = "Delete" if delete_status else "Gone"
         button_phold = col3.empty()  # create a placeholder
-        do_action = button_phold.button(button_type, key=i, on_click=delete_pdf, args=(DATA_DIR, Name))
-            # if do_action:
-            #         pass # do some action with a row's data
-            #         button_phold.empty()  #  remove button
+        do_action = button_phold.button(button_type, key=i, on_click=delete_file, args=(DATA_DIR, Name))
     
 if __name__ == "__main__":
     main()
-    
