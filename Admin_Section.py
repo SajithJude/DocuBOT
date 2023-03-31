@@ -65,27 +65,27 @@ def main():
         index.save_to_disk(os.path.join(DATA_DIR, os.path.splitext(pdf_filename)[0] + ".json"))
         st.success("Index created successfully!")
     # Get a list of files in the directory
-        files = os.listdir(DATA_DIR)
+    files = os.listdir(DATA_DIR)
 
-        colms = st.columns((4, 1, 1))
+    colms = st.columns((4, 1, 1))
 
-        fields = ["Name", 'View', 'Delete' ]
-        for col, field_name in zip(colms, fields):
-            # header
-            col.subheader(field_name)
+    fields = ["Name", 'View', 'Delete' ]
+    for col, field_name in zip(colms, fields):
+        # header
+        col.subheader(field_name)
 
-        i=1
-        for  Name in files:
-            i+=1
-            col1, col2, col3 = st.columns((4 , 1, 1))
-            # col1.write(x)  # index
-            col1.caption(Name)  # email
-            col2.button("View", key=Name, on_click=display_pdf, args=(DATA_DIR, Name))  # unique ID
-            # col4.button(user_table['Delete'][x])   # email status
-            delete_status = fields[0]  # flexible type of button
-            button_type = "Delete" if delete_status else "Gone"
-            button_phold = col3.empty()  # create a placeholder
-            do_action = button_phold.button(button_type, key=i, on_click=delete_pdf, args=(DATA_DIR, Name))
+    i=1
+    for  Name in files:
+        i+=1
+        col1, col2, col3 = st.columns((4 , 1, 1))
+        # col1.write(x)  # index
+        col1.caption(Name)  # email
+        col2.button("View", key=Name, on_click=display_pdf, args=(DATA_DIR, Name))  # unique ID
+        # col4.button(user_table['Delete'][x])   # email status
+        delete_status = fields[0]  # flexible type of button
+        button_type = "Delete" if delete_status else "Gone"
+        button_phold = col3.empty()  # create a placeholder
+        do_action = button_phold.button(button_type, key=i, on_click=delete_pdf, args=(DATA_DIR, Name))
             # if do_action:
             #         pass # do some action with a row's data
             #         button_phold.empty()  #  remove button
