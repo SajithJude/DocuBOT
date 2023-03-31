@@ -102,8 +102,8 @@ def main():
         do_action = button_phold.button(button_type, key=i, on_click=delete_file, args=(DATA_DIR, Name))
     
 if __name__ == "__main__":
-
-    if st.text_input("Password")== "flipick":
+    password = st.text_input("Enter password",type="password")
+    if password == "flipick":
         main()
     else:
         st.write("You are not allowed to View this page")
