@@ -66,7 +66,7 @@ input_text = st.text_input("Ask DocuBOT a question", key="input_text", on_change
 
 for chat in st.session_state.history:
     if chat["is_user"]:
-            st.caption("User: " + chat["message"])
+        st.caption("Question: " + chat["message"])
     else:
         with st.sidebar.expander("Conversation History", expanded=False):
             st.write("Bot: " + chat["message"], language=None)
