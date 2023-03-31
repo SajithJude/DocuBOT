@@ -46,10 +46,6 @@ else:
 def generate_answer():
     user_message = st.session_state.input_text
     query_str = str(user_message)
-    # context_str = "Generate answers for the questions that are relevant only to the documents context, throw a default answer saying I dont know for unrelevant questions."
-    # QA_PROMPT =  "When the users says quiz me, ask him a question from the context he mentioned, and corrext his answer on the next message"
-    
-    # QA_PROMPT = QuestionAnswerPrompt(QA_PROMPT_TMPL)
     message_bot = index.query(query_str, response_mode="compact", mode="embedding")
     st.session_state.history.append({"message": user_message, "is_user": True})
     st.session_state.history.append({"message": str(message_bot), "is_user": False})
