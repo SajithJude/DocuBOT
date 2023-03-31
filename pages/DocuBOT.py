@@ -20,9 +20,6 @@ if selected_index:
     index = GPTSimpleVectorIndex.load_from_disk(index_path)
     st.success("Index loaded succesfully.")
 
-try:
-    ques = st.text_input("enter question")
-    res = index.query(ques)
-    st.write(res)
-except NameError:
-    st.warning("Select and index to get started")
+ques = st.text_input("enter question")
+res = index.query(ques)
+st.write(res)
