@@ -32,12 +32,12 @@ if button:
 ques = st.text_input("Enter a question")
 
 # Add a button to the Streamlit app to query the index with the entered question
-send = st.button("Ask")
+# send = st.button("Ask")
 
-if send:
-    # Load the index if it hasn't been loaded yet
-    if "index" not in st.session_state:
-        st.session_state.index = load_index(selected_index)
+if ques:
+    # # Load the index if it hasn't been loaded yet
+    # if "index" not in st.session_state:
+    #     st.session_state.index = load_index(selected_index)
 
     # Query the loaded index with the entered question
     index = st.session_state.index
