@@ -68,10 +68,10 @@ for chat in st.session_state.history:
 
     if chat["is_user"]:
 
-        st.sidebar.write("Question: " + chat["message"])
+        st.sidebar.caption("Question: " + chat["message"])
     else:
-        with st.sidebar.expander("Conversation History", expanded=False):
-            st.write("Bot: " + chat["message"], language=None)
+        with st.sidebar.expander("Bot Answer", expanded=False):
+            st.write(chat["message"], language=None)
 
 for chat in st.session_state.history:
     st_message(**chat)
