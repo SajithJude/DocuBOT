@@ -24,6 +24,8 @@ def get_text():
     input_text = st.text_input("You: ", st.session_state["input"], key="input",
                             placeholder="Ask Me to Quiz you from a chapter and correct your ...", 
                             label_visibility='hidden')
+    # val = input_text
+    # input_text = ""
     return input_text
 
 def new_chat():
@@ -68,12 +70,14 @@ if st.session_state.index is not None:
             output = response
             st.session_state.past.append(user_input)  
             st.session_state.generated.append(output)
+            st.session_state["input"] = "" 
 else:
     user_input = get_text()
     if user_input:
         output = Conversation.run(input=user_input)  
         st.session_state.past.append(user_input)  
         st.session_state.generated.append(output)  
+        st.session_state["input"] = "" 
 
 download_str = []
 
