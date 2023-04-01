@@ -33,6 +33,7 @@ def get_text():
     input_text = st.text_input("You: ", st.session_state["input"], key="input",
                             placeholder="Ask Me to Quiz you from a chapter and correct your ...", 
                             label_visibility='hidden')
+    input_text.empty()
     return input_text
 
 # Define function to start a new chat
