@@ -7,7 +7,7 @@ import base64
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
-st.subheader("Question And Answer Generation Admin section")
+st.subheader("Question & Answer Generation Admin section")
 
 
 topic = st.text_input("Enter topic here")
