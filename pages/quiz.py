@@ -40,7 +40,7 @@ if result:
 for i, item in enumerate(st.session_state.json_output):
     st.write(f"question {i+1}")
     question = st.text_input("question", item["question"])
-    answer = st.text_input("answer", item["answer"])
+    answer = st.text_area("answer", item["answer"])
     # marking_criteria = item["Marking Criteria"]
     # st.write("Marking Criteria")
     # for j, criterion in enumerate(marking_criteria):
