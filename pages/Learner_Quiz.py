@@ -31,7 +31,7 @@ if uploaded_file is not None:
     if st.session_state['current_question'] < len(questions):
         current_question = questions[st.session_state['current_question']]
         message(current_question, is_user=False, key=str(st.session_state['current_question']))
-        user_input =  st.text_input("You: ","", key="input")
+        user_input =  st.text_input("You: ", key="input")
         
 
         if user_input:
