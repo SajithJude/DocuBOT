@@ -41,7 +41,29 @@ if uploaded_file is not None:
             if i < streamlit.session_state['current_question']:
                 streamlit.sidebar.write(question)
                 streamlit.sidebar.write("You: " + streamlit.session_state['past'][i])
-            
+
+    else:
+        responses = []
+        for i, question in enumerate(questions):
+            response = {
+                "question": question,
+                "response": streamlit.session_state['past'][i]
+            }
+            responses.append(response)
+        
+        with open("responses.json", "w") as outfile:
+            json.dump(responses, outfile)
+
+        message("Thank you for answering all the questions. Your responses have been saved.", is_user=False)
+        streamlit.sidebar.write("Thank you for answering all the questions. Your responses have been saved.")
+
+        streamlit.sidebar.download_button(
+            label="Download Responses",
+            data=outfile.getvalue(),
+            file_name="responses.json",
+            mime="application/json"
+        )
+        
     if streamlit.session_state['generated']:
         for i in range(len(streamlit.session_state['generated'])-1, -1, -1):
             message(streamlit.session_state["generated"][i], key=str(i))
