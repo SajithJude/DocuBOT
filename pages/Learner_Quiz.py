@@ -35,8 +35,8 @@ if uploaded_file:
         st.write(f"Question {index+1}: {question['question']}")
         answer = st.text_input("Your Answer", key=index)
         if answer:
-            responses.append({"index": index+1, "answer": answer})
             index += 1
+            responses.append({"index": index+1, "answer": answer})
 
     # Sidebar
     st.sidebar.write(responses)
