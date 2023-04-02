@@ -24,7 +24,7 @@ if uploaded_file is not None:
         st.session_state['current_question'] = 0
 
     def get_text():
-        input_text = st.text_input("You: ","", key="input")
+        input_text = st.text_input("You: ",)
         return input_text 
 
     if st.session_state['current_question'] < len(questions):
