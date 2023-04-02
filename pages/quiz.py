@@ -7,6 +7,9 @@ import base64
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
+st.subheader("Question And Answer Generation Admin section")
+
+
 topic = st.text_input("Enter topic here")
 num_quest = st.slider('Number of questions to generate', 0, 10, 1)
 result = st.button("Submit")
@@ -31,6 +34,7 @@ if result:
     if 'json_output' not in st.session_state:
         st.session_state.json_output = json_output
 
+st.subheader("Refining section by subject matter expert")
     # Display the JSON output as editable text_input fields
 for i, item in enumerate(st.session_state.json_output):
     st.write(f"question {i+1}")
