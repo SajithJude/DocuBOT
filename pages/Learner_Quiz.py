@@ -30,7 +30,7 @@ if uploaded_file:
 
     # Chatbot
     index = 0
-    while index < len(data):
+    if index < len(data):
         question = data[index]
         st.write(f"Question {index+1}: {question['question']}")
         answer = st.text_input("Your Answer", key=index)
