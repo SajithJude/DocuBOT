@@ -3,6 +3,7 @@ from llama_index import GPTSimpleVectorIndex, Document, SimpleDirectoryReader, Q
 import os
 import glob
 import PyPDF2
+from streamlit_chat import set_bot_avatar_url
 
 import openai 
 from streamlit_chat import message as st_message
