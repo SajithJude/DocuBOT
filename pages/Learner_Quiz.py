@@ -25,14 +25,12 @@ if uploaded_file is not None:
 
     def get_text():
         input_text = st.text_input("You: ","", key="input")
-        
         return input_text 
 
     if st.session_state['current_question'] < len(questions):
         current_question = questions[st.session_state['current_question']]
         message(current_question, is_user=False, key=str(st.session_state['current_question']))
         user_input = get_text()
-        
 
         if user_input:
             st.sidebar.write(current_question)
