@@ -6,13 +6,8 @@ import base64
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# DATA_DIR = "data"
-# # Get a list of available index files in the data directory
-# index_filenames = [f for f in os.listdir(DATA_DIR) if f.endswith(".json")]
 
-# book = st.selectbox("Select a Book ", index_filenames)
 topic = st.text_input("Enter topic here")
-# subtopic = st.text_input("Enter subtopic here")
 num_quest = st.slider('Number of questions to generate', 0, 10, 1)
 result = st.button("Submit")
 
@@ -41,21 +36,11 @@ for i, item in enumerate(st.session_state.json_output):
     st.write(f"question {i+1}")
     question = st.text_input("question", item["question"])
     answer = st.text_area("answer", item["answer"])
-    # marking_criteria = item["Marking Criteria"]
-    # st.write("Marking Criteria")
-    # for j, criterion in enumerate(marking_criteria):
-    #     if "Correct answer" in criterion:
-    #         marks = st.number_input(f"Correct answer {criterion['Correct answer']} Marks", value=criterion["Marks"])
-    #         marking_criteria[j]["Marks"] = marks
-    #     elif "Incorrect answer" in criterion:
-    #         marks = st.number_input(f"Incorrect answer {criterion['Incorrect answer']} Marks", value=criterion["Marks"])
-    #         marking_criteria[j]["Marks"] = marks
 
     # Update the JSON output with the edited fields
     st.session_state.json_output[i]["Question"] = question
     st.session_state.json_output[i]["answer"] = answer
-    # st.session_state.json_output[i]["Marking Criteria"] = marking_criteria
-
+  
 # Display a download button to download the edited version
 edited_json = json.dumps(st.session_state.json_output, indent=2)
 b64 = base64.b64encode(edited_json.encode()).decode()
