@@ -13,7 +13,7 @@ favicon = "favicon.ac8d93a.69085235180674d80d902fdc4b848d0b (1).png"
 st.set_page_config(page_title="DocuBOT", page_icon=favicon)
 
 css = """
-.css-kcb0to {
+.css-1y35n86 {
   background-image: url("https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg?w=740&t=st=1680426767~exp=1680427367~hmac=e87930f1196919995de9637b599035c4ac719ea233ae8c9454fbe62a7e9d90b2");
 }
 """
