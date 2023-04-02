@@ -43,4 +43,3 @@ if uploaded_file is not None:
             message(st.session_state["generated"][i], key=str(i))
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
             st.sidebar.write("Bot: ", st.session_state["generated"][i])
-        pass 
