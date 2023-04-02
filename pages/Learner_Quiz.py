@@ -5,10 +5,15 @@ st.set_page_config(page_title="Question-Answer Chatbot")
 
 # Load the JSON file
 def load_json(file):
-    with open(file, "r") as f:
-        data = json.load(f)
+    # Read the contents of the uploaded file as bytes
+    file_contents = file.read()
+    # Decode the bytes object to a string
+    file_contents = file_contents.decode("utf-8")
+    # Load the JSON string into a Python dictionary
+    data = json.loads(file_contents)
     return data
 
+    
 st.sidebar.title("User Responses")
 responses = []
 
