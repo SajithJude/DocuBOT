@@ -2,6 +2,7 @@ import streamlit as st
 import openai
 import os
 import json
+import base64
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
