@@ -33,7 +33,7 @@ if uploaded_file:
     while index < len(data):
         question = data[index]
         st.write(f"Question {index+1}: {question['question']}")
-        answer = st.text_input("Your Answer", key=index)
+        answer = st.text_input("Your Answer", key=index+1)
         if answer:
             responses.append({"question": question['question'], "answer": answer})
             index += 1
