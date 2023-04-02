@@ -26,16 +26,16 @@ uploaded_file = st.file_uploader("Upload JSON file", type=["json"])
 if uploaded_file:
     data = load_json(uploaded_file)
     st.success("File uploaded successfully!")
-    st.write("Here are the available questions:")
-    for i, item in enumerate(data):
-        st.write(f"{i+1}. {item['question']}")
+    st.write("Please answer the following questions:")
 
     # Chatbot
-    st.write("Please answer the following questions:")
-    for i, item in enumerate(data):
-        st.write(f"Question {i+1}: {item['question']}")
-        answer = st.text_input("Your Answer", key=i)
-        responses.append(answer)
+    question_iter = iter(data)
+    question = next(question_iter, None)
+    while question:
+        st.write(f"Question {question['id']}: {question['question']}")
+        answer = st.text_input("Your Answer", key=question['id'])
+        responses.append({"id": question['id'], "answer": answer})
+        question = next(question_iter, None)
 
     # Sidebar
     st.sidebar.write(responses)
