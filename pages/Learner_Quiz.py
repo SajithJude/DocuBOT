@@ -33,11 +33,15 @@ if uploaded_file is not None:
         user_input = get_text()
 
         if user_input:
-            streamlit.sidebar.write(current_question)
-            streamlit.sidebar.write("You: ", user_input)
-            
+            streamlit.session_state['past'].append(user_input)
             streamlit.session_state['current_question'] += 1
 
+        streamlit.sidebar.header("Conversation History")
+        for i, question in enumerate(questions):
+            if i < streamlit.session_state['current_question']:
+                streamlit.sidebar.write(question)
+                streamlit.sidebar.write("You: " + streamlit.session_state['past'][i])
+            
     if streamlit.session_state['generated']:
         for i in range(len(streamlit.session_state['generated'])-1, -1, -1):
             message(streamlit.session_state["generated"][i], key=str(i))
