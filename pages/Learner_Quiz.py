@@ -12,7 +12,7 @@ st.header("Streamlit Chat - Demo")
 uploaded_file = st.file_uploader("Choose a file")
 
 if uploaded_file is not None:
-    questions = json.load(uploaded_file)
+    questions =  [q['question'] for q in json.load(uploaded_file)]
     
     if 'generated' not in st.session_state:
         st.session_state['generated'] = []
@@ -37,7 +37,7 @@ if uploaded_file is not None:
             st.sidebar.write("You: ", user_input)
             
             message(current_question['answer'], is_user=False, key=str(st.session_state['current_question']) + '_answer')
-            st.session_state['current_question'] += 2
+            st.session_state['current_question'] += 1
 
     if st.session_state['generated']:
         for i in range(len(st.session_state['generated'])-1, -1, -1):
