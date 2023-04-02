@@ -49,6 +49,7 @@ def generate_answer():
     message_bot = index.query(query_str, response_mode="compact", mode="embedding")
     st.session_state.history.append({"message": user_message, "is_user": True})
     st.session_state.history.append({"message": str(message_bot), "is_user": False})
+    st.session_state.input_text = ""
     # st.session_state.history = [{"message": user_message, "is_user": True},
     #                             {"message": str(message_bot), "is_user": False}]
 
