@@ -29,12 +29,14 @@ if uploaded_file:
     st.write("Please answer the following questions:")
 
     # Chatbot
+    index = 1
     question_iter = iter(data)
     question = next(question_iter, None)
     while question:
-        st.write(f"Question {question['id']}: {question['question']}")
-        answer = st.text_input("Your Answer", key=question['id'])
-        responses.append({"id": question['id'], "answer": answer})
+        st.write(f"Question {index}: {question['question']}")
+        answer = st.text_input("Your Answer", key=index)
+        responses.append({"index": index, "answer": answer})
+        index += 1
         question = next(question_iter, None)
 
     # Sidebar
