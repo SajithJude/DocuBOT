@@ -7,7 +7,7 @@ st.set_page_config(
     page_icon=":robot:"
 )
 
-st.header("Learner quiz ")
+st.header("Streamlit Chat - Demo")
 
 uploaded_file = st.file_uploader("Choose a file")
 
