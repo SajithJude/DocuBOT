@@ -1,8 +1,6 @@
 import streamlit as st
 from llama_index import GPTSimpleVectorIndex, Document, SimpleDirectoryReader, QuestionAnswerPrompt
 import os
-import glob
-import PyPDF2
 
 
 import openai 
@@ -51,11 +49,18 @@ def generate_answer():
     message_bot = index.query(query_str, response_mode="compact", mode="embedding")
     st.session_state.history.append({"message": user_message, "is_user": True})
     st.session_state.history.append({"message": str(message_bot), "is_user": False})
+    st.session_state.input_text = ""
+    # st.session_state.history = [{"message": user_message, "is_user": True},
+    #                             {"message": str(message_bot), "is_user": False}]
 
 if st.sidebar.button("New Chat"):
     new_chat()
 
 input_text = st.text_input("Ask DocuBOT a question", key="input_text", on_change=generate_answer)
+
+if st.session_state.history:
+    chat = st.session_state.history[-1]
+    st_message(**chat)
 
 for chat in st.session_state.history:
 
@@ -66,5 +71,8 @@ for chat in st.session_state.history:
         with st.sidebar.expander("Bot Answer", expanded=False):
             st.write(chat["message"], language=None)
 
-for chat in st.session_state.history:
-    st_message(**chat)
+def st_message(message, is_user):
+    if is_user:
+        st.write("You: " + message)
+    else:
+        st.write("DocuBOT: " + message)
