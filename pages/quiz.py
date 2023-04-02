@@ -41,20 +41,20 @@ for i, item in enumerate(st.session_state.json_output):
     st.write(f"question {i+1}")
     question = st.text_input("question", item["question"])
     answer = st.text_input("answer", item["answer"])
-    marking_criteria = item["Marking Criteria"]
-    st.write("Marking Criteria")
-    for j, criterion in enumerate(marking_criteria):
-        if "Correct answer" in criterion:
-            marks = st.number_input(f"Correct answer {criterion['Correct answer']} Marks", value=criterion["Marks"])
-            marking_criteria[j]["Marks"] = marks
-        elif "Incorrect answer" in criterion:
-            marks = st.number_input(f"Incorrect answer {criterion['Incorrect answer']} Marks", value=criterion["Marks"])
-            marking_criteria[j]["Marks"] = marks
+    # marking_criteria = item["Marking Criteria"]
+    # st.write("Marking Criteria")
+    # for j, criterion in enumerate(marking_criteria):
+    #     if "Correct answer" in criterion:
+    #         marks = st.number_input(f"Correct answer {criterion['Correct answer']} Marks", value=criterion["Marks"])
+    #         marking_criteria[j]["Marks"] = marks
+    #     elif "Incorrect answer" in criterion:
+    #         marks = st.number_input(f"Incorrect answer {criterion['Incorrect answer']} Marks", value=criterion["Marks"])
+    #         marking_criteria[j]["Marks"] = marks
 
     # Update the JSON output with the edited fields
     st.session_state.json_output[i]["Question"] = question
     st.session_state.json_output[i]["answer"] = answer
-    st.session_state.json_output[i]["Marking Criteria"] = marking_criteria
+    # st.session_state.json_output[i]["Marking Criteria"] = marking_criteria
 
 # Display a download button to download the edited version
 edited_json = json.dumps(st.session_state.json_output, indent=2)
