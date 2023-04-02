@@ -9,36 +9,38 @@ st.set_page_config(
 
 st.header("Streamlit Chat - Demo")
 
-with open("questions.json") as f:
-    questions = json.load(f)
+uploaded_file = st.file_uploader("Choose a file")
 
-if 'generated' not in st.session_state:
-    st.session_state['generated'] = []
-
-if 'past' not in st.session_state:
-    st.session_state['past'] = []
+if uploaded_file is not None:
+    questions = json.load(uploaded_file)
     
-if 'current_question' not in st.session_state:
-    st.session_state['current_question'] = 0
+    if 'generated' not in st.session_state:
+        st.session_state['generated'] = []
 
-def get_text():
-    input_text = st.text_input("You: ","", key="input")
-    return input_text 
-
-if st.session_state['current_question'] < len(questions):
-    current_question = questions[st.session_state['current_question']]
-    message(current_question['question'], is_user=False, key=str(st.session_state['current_question']))
-    user_input = get_text()
-
-    if user_input:
-        st.sidebar.write(current_question['question'])
-        st.sidebar.write("You: ", user_input)
+    if 'past' not in st.session_state:
+        st.session_state['past'] = []
         
-        message(current_question['answer'], is_user=False, key=str(st.session_state['current_question']) + '_answer')
-        st.session_state['current_question'] += 1
+    if 'current_question' not in st.session_state:
+        st.session_state['current_question'] = 0
 
-if st.session_state['generated']:
-    for i in range(len(st.session_state['generated'])-1, -1, -1):
-        message(st.session_state["generated"][i], key=str(i))
-        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-        st.sidebar.write("Bot: ", st.session_state["generated"][i])
+    def get_text():
+        input_text = st.text_input("You: ","", key="input")
+        return input_text 
+
+    if st.session_state['current_question'] < len(questions):
+        current_question = questions[st.session_state['current_question']]
+        message(current_question['question'], is_user=False, key=str(st.session_state['current_question']))
+        user_input = get_text()
+
+        if user_input:
+            st.sidebar.write(current_question['question'])
+            st.sidebar.write("You: ", user_input)
+            
+            message(current_question['answer'], is_user=False, key=str(st.session_state['current_question']) + '_answer')
+            st.session_state['current_question'] += 1
+
+    if st.session_state['generated']:
+        for i in range(len(st.session_state['generated'])-1, -1, -1):
+            message(st.session_state["generated"][i], key=str(i))
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+            st.sidebar.write("Bot: ", st.session_state["generated"][i])
