@@ -79,6 +79,7 @@ st.title("DocuBot QuizMode")
 API_O = os.getenv("API_KEY")
 
 # Session state storage would be ideal
+iconImage = 'CourseBOT Mascot.png'
 
 # Create an OpenAI instance
 llm = OpenAI(temperature=0,
@@ -119,7 +120,7 @@ download_str = []
 with st.expander("Conversation", expanded=True):
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         st.info(st.session_state["past"][i],icon="🧐")
-        st.success(st.session_state["generated"][i], icon="🤖")
+        st.success(st.session_state["generated"][i], icon=iconImage)
         download_str.append(st.session_state["past"][i])
         download_str.append(st.session_state["generated"][i])
     
