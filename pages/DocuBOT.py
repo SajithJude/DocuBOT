@@ -3,14 +3,23 @@ from llama_index import GPTSimpleVectorIndex, Document, SimpleDirectoryReader, Q
 import os
 import glob
 import PyPDF2
-from streamlit_chat import set_bot_avatar_url
+
 
 import openai 
 from streamlit_chat import message as st_message
 
+
 favicon = "favicon.ac8d93a.69085235180674d80d902fdc4b848d0b (1).png"
 st.set_page_config(page_title="DocuBOT", page_icon=favicon)
 
+css = """
+.css-kcb0to {
+  background-image: url("CourseBOT Mascot.png");
+}
+"""
+
+
+st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 openai.api_key = os.getenv("API_KEY")
 
