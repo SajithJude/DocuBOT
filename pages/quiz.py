@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 import os
 import json
-from streamlit import caching
+# from streamlit import caching
 import base64
 from sessionstate import get
 
@@ -68,4 +68,4 @@ if session.json_output:
 if session.json_output and book != index_filenames:
     session.json_output = []
     session.edited_json = ""
-    caching.clear_cache()
+    # caching.clear_cache()
