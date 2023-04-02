@@ -21,7 +21,7 @@ if uploaded_file is not None:
         st.session_state['past'] = []
         
     if 'current_question' not in st.session_state:
-        st.session_state['current_question'] = 0
+        st.session_state['current_question'] = 1
 
     def get_text():
         input_text = st.text_input("You: ","", key="input")
