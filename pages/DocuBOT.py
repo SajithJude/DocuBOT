@@ -10,6 +10,7 @@ from streamlit_chat import message as st_message
 favicon = "favicon.ac8d93a.69085235180674d80d902fdc4b848d0b (1).png"
 st.set_page_config(page_title="DocuBOT", page_icon=favicon)
 
+iconImage = st.image('CourseBOT Mascot.png')
 
 openai.api_key = os.getenv("API_KEY")
 
@@ -48,7 +49,7 @@ def generate_answer():
     query_str = str(user_message)
     message_bot = index.query(query_str, response_mode="compact", mode="embedding")
     st.session_state.history.append({"message": user_message, "is_user": True})
-    st.session_state.history.append({"message": str(message_bot), "is_user": False})
+    st.session_state.history.append({"message": str(message_bot), "is_user": False, icon: iconImage})
 
 if st.sidebar.button("New Chat"):
     new_chat()
