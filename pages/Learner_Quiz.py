@@ -29,11 +29,16 @@ if uploaded_file:
     st.write("Please answer the following questions:")
 
     # Chatbot
-    for i, question in enumerate(data):
-        st.write(f"Question {i+1}: {question['question']}")
-        answer = st.text_input("Your Answer", key=i)
+    index = 0
+    while index < len(data):
+        question = data[index]
+        st.write(f"Question {index+1}: {question['question']}")
+        answer = st.text_input("Your Answer", key=index)
         if answer:
             responses.append({"question": question['question'], "answer": answer})
+            index += 1
+        else:
+            st.warning("Please answer the current question before proceeding to the next one.")
 
     # Sidebar
     st.sidebar.write("Answered Questions:")
