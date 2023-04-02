@@ -29,15 +29,14 @@ if uploaded_file:
     st.write("Please answer the following questions:")
 
     # Chatbot
-    index = 0
-    for index in len(data):
-        question = data[index]
-        st.write(f"Question {index+1}: {question['question']}")
-        answer = st.text_input("Your Answer", key=index)
+    for i, question in enumerate(data):
+        st.write(f"Question {i+1}: {question['question']}")
+        answer = st.text_input("Your Answer", key=i)
         if answer:
-            responses.append({"index": index+1, "answer": answer})
-            index += 1
-
+            responses.append({"question": question['question'], "answer": answer})
 
     # Sidebar
-    st.sidebar.write(responses)
+    st.sidebar.write("Answered Questions:")
+    for i, response in enumerate(responses):
+        st.sidebar.write(f"{i+1}. {response['question']}")
+        st.sidebar.write(f"   Answer: {response['answer']}")
