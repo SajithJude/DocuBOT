@@ -2,9 +2,7 @@ import streamlit as st
 import openai
 import os
 import json
-# from streamlit import caching
 import base64
-from sessionstate import get
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -12,7 +10,6 @@ DATA_DIR = "data"
 # Get a list of available index files in the data directory
 index_filenames = [f for f in os.listdir(DATA_DIR) if f.endswith(".json")]
 
-session = get(json_output=[], edited_json="")
 book = st.selectbox("Select a Book ", index_filenames)
 topic = st.text_input("Enter topic here")
 # subtopic = st.text_input("Enter subtopic here")
@@ -32,12 +29,14 @@ if result:
     )
     output = response.choices[0].text.strip()
     json_output = json.loads(output)
+    # Initialization
 
-    # Store the JSON output in the session state
-    session.json_output = json_output
+# Session State also supports attribute based syntax
+    if 'json_output' not in st.session_state:
+        st.session_state.json_output = json_output
 
-# Display the JSON output as editable text_input fields
-for i, item in enumerate(session.json_output):
+    # Display the JSON output as editable text_input fields
+for i, item in enumerate(st.session_state.json_output):
     st.write(f"Question {i+1}")
     question = st.text_input("Question", item["Question"])
     answer = st.text_input("Answer", item["Answer"])
@@ -52,20 +51,12 @@ for i, item in enumerate(session.json_output):
             marking_criteria[j]["Marks"] = marks
 
     # Update the JSON output with the edited fields
-    session.json_output[i]["Question"] = question
-    session.json_output[i]["Answer"] = answer
-    session.json_output[i]["Marking Criteria"] = marking_criteria
+    st.session_state.json_output[i]["Question"] = question
+    st.session_state.json_output[i]["Answer"] = answer
+    st.session_state.json_output[i]["Marking Criteria"] = marking_criteria
 
 # Display a download button to download the edited version
-if session.json_output:
-    edited_json = json.dumps(session.json_output, indent=2)
-    session.edited_json = edited_json
-    b64 = base64.b64encode(edited_json.encode()).decode()
-    href = f'<a href="data:file/json;base64,{b64}" download="{topic}.json">Download edited JSON file</a>'
-    st.markdown(href, unsafe_allow_html=True)
-
-# Clear the cache if the book is changed
-if session.json_output and book != index_filenames:
-    session.json_output = []
-    session.edited_json = ""
-    # caching.clear_cache()
+edited_json = json.dumps(st.session_state.json_output, indent=2)
+b64 = base64.b64encode(edited_json.encode()).decode()
+href = f'<a href="data:file/json;base64,{b64}" download="{topic}.json">Download edited JSON file</a>'
+st.markdown(href, unsafe_allow_html=True)
