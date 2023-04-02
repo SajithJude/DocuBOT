@@ -6,18 +6,18 @@ import base64
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-DATA_DIR = "data"
-# Get a list of available index files in the data directory
-index_filenames = [f for f in os.listdir(DATA_DIR) if f.endswith(".json")]
+# DATA_DIR = "data"
+# # Get a list of available index files in the data directory
+# index_filenames = [f for f in os.listdir(DATA_DIR) if f.endswith(".json")]
 
-book = st.selectbox("Select a Book ", index_filenames)
+# book = st.selectbox("Select a Book ", index_filenames)
 topic = st.text_input("Enter topic here")
 # subtopic = st.text_input("Enter subtopic here")
 num_quest = st.slider('Number of questions to generate', 0, 10, 1)
 result = st.button("Submit")
 
 if result:
-    prompt = f"generate {num_quest} essay type questions with answers on the topic of {topic}, with the correct answers and marking criteria with marks per criteria, show the output in json list format."
+    prompt = f"generate {num_quest} essay type questions with answers on the topic of {topic}, with the all the possible correct comprehensive answers, show the output in json list format."
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
