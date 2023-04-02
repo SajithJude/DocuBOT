@@ -1,47 +1,44 @@
 import streamlit as st
+from streamlit_chat import message
 import json
 
-st.set_page_config(page_title="Question-Answer Chatbot")
+st.set_page_config(
+    page_title="Streamlit Chat - Demo",
+    page_icon=":robot:"
+)
 
-# Load the JSON file
-def load_json(file):
-    # Read the contents of the uploaded file as bytes
-    file_contents = file.read()
-    # Decode the bytes object to a string
-    file_contents = file_contents.decode("utf-8")
-    # Load the JSON string into a Python dictionary
-    data = json.loads(file_contents)
-    return data
+st.header("Streamlit Chat - Demo")
 
+with open("questions.json") as f:
+    questions = json.load(f)
+
+if 'generated' not in st.session_state:
+    st.session_state['generated'] = []
+
+if 'past' not in st.session_state:
+    st.session_state['past'] = []
     
-st.sidebar.title("User Responses")
-responses = []
+if 'current_question' not in st.session_state:
+    st.session_state['current_question'] = 0
 
-# Streamlit UI
-st.title("Question-Answer Chatbot")
+def get_text():
+    input_text = st.text_input("You: ","", key="input")
+    return input_text 
 
-# File Upload
-uploaded_file = st.file_uploader("Upload JSON file", type=["json"])
+if st.session_state['current_question'] < len(questions):
+    current_question = questions[st.session_state['current_question']]
+    message(current_question['question'], is_user=False, key=str(st.session_state['current_question']))
+    user_input = get_text()
 
-if uploaded_file:
-    data = load_json(uploaded_file)
-    st.success("File uploaded successfully!")
-    st.write("Please answer the following questions:")
+    if user_input:
+        st.sidebar.write(current_question['question'])
+        st.sidebar.write("You: ", user_input)
+        
+        message(current_question['answer'], is_user=False, key=str(st.session_state['current_question']) + '_answer')
+        st.session_state['current_question'] += 1
 
-    # Chatbot
-    index = 0
-    while index < len(data):
-        question = data[index]
-        st.write(f"Question {index+1}: {question['question']}")
-        answer = st.text_input("Your Answer", key=index+1)
-        if answer:
-            responses.append({"question": question['question'], "answer": answer})
-            index += 1
-        else:
-            st.warning("Please answer the current question before proceeding to the next one.")
-
-    # Sidebar
-    st.sidebar.write("Answered Questions:")
-    for i, response in enumerate(responses):
-        st.sidebar.write(f"{i+1}. {response['question']}")
-        st.sidebar.write(f"   Answer: {response['answer']}")
+if st.session_state['generated']:
+    for i in range(len(st.session_state['generated'])-1, -1, -1):
+        message(st.session_state["generated"][i], key=str(i))
+        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+        st.sidebar.write("Bot: ", st.session_state["generated"][i])
