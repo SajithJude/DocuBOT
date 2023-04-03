@@ -3,7 +3,7 @@ from streamlit_chat import message
 import json
 
 streamlit.set_page_config(
-    page_title="Streamlit Chat - Demo",
+    page_title="DocuBOT QuizMode",
     page_icon=":robot:"
 )
 
