@@ -15,7 +15,7 @@ num_quest = st.slider('Number of questions to generate', 0, 10, 1)
 result = st.button("Submit")
 
 if result:
-    prompt = f"generate {num_quest} essay type questions with answers on the topic of {topic}, with the all the possible correct comprehensive answers, show the output in json list format where key name is question and value name is answer."
+    prompt = f"generate {num_quest} essay type questions with answers on the topic of {topic}, with the all the possible correct comprehensive answers, show the output in json list format where key name is question and value name is answer (no capital letterss)."
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
