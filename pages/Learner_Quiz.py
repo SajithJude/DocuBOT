@@ -7,7 +7,7 @@ streamlit.set_page_config(
     page_icon=":robot:"
 )
 
-streamlit.header("Streamlit Chat - Demo")
+streamlit.header("DocuBOT QuizMode")
 
 uploaded_file = streamlit.file_uploader("Choose a file")
 
