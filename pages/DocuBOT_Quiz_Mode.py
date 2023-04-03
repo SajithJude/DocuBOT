@@ -9,7 +9,7 @@ streamlit.set_page_config(
 
 streamlit.header("DocuBOT QuizMode")
 
-uploaded_file = streamlit.file_uploader("Choose a file")
+uploaded_file = streamlit.file_uploader("Upload the Json Config file here")
 
 if uploaded_file is not None:
     questions = [q['question'] for q in json.load(uploaded_file)]
