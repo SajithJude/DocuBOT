@@ -15,7 +15,7 @@ num_quest = st.slider('Number of questions to generate', 0, 10, 1)
 result = st.button("Submit")
 
 if result:
-    prompt = f"generate {num_quest} essay type questions with answers on the topic of {topic}, with the all the possible correct comprehensive answers, show the output in json list format."
+    prompt = f"generate {num_quest} essay type questions with answers on the topic of {topic}, with the all the possible correct comprehensive answers, show the output in json list format as question and answer."
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
@@ -27,7 +27,7 @@ if result:
     )
     output = response.choices[0].text.strip()
     json_output = json.loads(output)
-    st.write(json_output)
+    # st.write(json_output)
     # Initialization
 
 # Session State also supports attribute based syntax
