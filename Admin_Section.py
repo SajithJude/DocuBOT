@@ -55,7 +55,7 @@ def main():
     if uploaded_file is not None:
         # Save the uploaded file to the data directory
         save_uploaded_file(uploaded_file)
-        st.success("File saved successfully!")
+        st.success("It would take a while to index the books, please wait..!")
     
     # Create a button to create the index
     # if st.button("Create Index"):
