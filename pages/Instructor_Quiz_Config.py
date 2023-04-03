@@ -33,20 +33,24 @@ if result:
 # Session State also supports attribute based syntax
     if 'json_output' not in st.session_state:
         st.session_state.json_output = json_output
+# except AttributeError:
 
-st.subheader("Refining section by subject matter expert")
-    # Display the JSON output as editable text_input fields
-for i, item in enumerate(st.session_state.json_output):
-    st.write(f"question {i+1}")
-    question = st.text_input("question", item["question"])
-    answer = st.text_area("answer", item["answer"])
+try:
+    st.subheader("Refining section by subject matter expert")
+        # Display the JSON output as editable text_input fields
+    for i, item in enumerate(st.session_state.json_output):
+        st.write(f"question {i+1}")
+        question = st.text_input("question", item["question"])
+        answer = st.text_area("answer", item["answer"])
 
-    # Update the JSON output with the edited fields
-    st.session_state.json_output[i]["Question"] = question
-    st.session_state.json_output[i]["answer"] = answer
-  
-# Display a download button to download the edited version
-edited_json = json.dumps(st.session_state.json_output, indent=2)
-b64 = base64.b64encode(edited_json.encode()).decode()
-href = f'<a href="data:file/json;base64,{b64}" download="{topic}.json">Download edited JSON file</a>'
-st.markdown(href, unsafe_allow_html=True)
+        # Update the JSON output with the edited fields
+        st.session_state.json_output[i]["Question"] = question
+        st.session_state.json_output[i]["answer"] = answer
+    
+    # Display a download button to download the edited version
+    edited_json = json.dumps(st.session_state.json_output, indent=2)
+    b64 = base64.b64encode(edited_json.encode()).decode()
+    href = f'<a href="data:file/json;base64,{b64}" download="{topic}.json">Download edited JSON file</a>'
+    st.markdown(href, unsafe_allow_html=True)
+except AttributeError:
+    st.warning("Type a topic and generate some questions to refine them")
