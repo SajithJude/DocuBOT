@@ -9,7 +9,7 @@ from firebase_admin import credentials, firestore
 
 
 cred = credentials.Certificate("docubot-2ac1d-firebase-adminsdk-9ztu6-80050a35cd.json")
-firebase_admin.initialize_app(cred)
+# firebase_admin.initialize_app(cred)
 
 # Initialize Pyrebase with the Firebase project credentials
 # config = {
