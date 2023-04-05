@@ -67,6 +67,7 @@ def app():
                 auth.sign_in_with_email_and_password(email, password)
                 st.success("Logged in!")
                 user = firebase.auth().current_user
+                st.write(user)
                 if user is not None:
                     role = db.collection("users").document(user.uid).get().to_dict().get("role")
                     if role == "instructor":
