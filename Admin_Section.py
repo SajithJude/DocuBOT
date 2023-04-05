@@ -12,17 +12,17 @@ cred = credentials.Certificate("docubot-2ac1d-firebase-adminsdk-9ztu6-80050a35cd
 # firebase_admin.initialize_app(cred)
 
 # Initialize Pyrebase with the Firebase project credentials
-# config = {
-#     "apiKey": "AIzaSyCnP2MswW3g6zpdNP0hx3aviXCej2ZmC0c",
-#     "authDomain": "docubot-2ac1d.firebaseapp.com",
-#     "projectId": "docubot-2ac1d",
-#     'databaseURL': "https://docubot-2ac1d-default-rtdb.asia-southeast1.firebasedatabase.app/",
-#     "storageBucket": "docubot-2ac1d.appspot.com",
-#     "messagingSenderId": "1053457031443",
-#     "appId": "1:1053457031443:web:82e2dbbf519bd97435bae6",
-#     "measurementId": "G-DM2R9ECXRV"
-# }
-# firebase = pyrebase.initialize_app(config)
+config = {
+    "apiKey": "AIzaSyCnP2MswW3g6zpdNP0hx3aviXCej2ZmC0c",
+    "authDomain": "docubot-2ac1d.firebaseapp.com",
+    "projectId": "docubot-2ac1d",
+    'databaseURL': "https://docubot-2ac1d-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    "storageBucket": "docubot-2ac1d.appspot.com",
+    "messagingSenderId": "1053457031443",
+    "appId": "1:1053457031443:web:82e2dbbf519bd97435bae6",
+    "measurementId": "G-DM2R9ECXRV"
+}
+firebase = pyrebase.initialize_app(config)
 
 # # Define the registration form
 def register():
