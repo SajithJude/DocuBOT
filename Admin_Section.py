@@ -55,6 +55,14 @@ def app():
     choice = st.selectbox("Select an option", menu)
     if choice == "Home":
         st.subheader("Welcome to the User Management App")
+        user = firebase.auth().current_user
+        if user is not None:
+            role = db.collection("users").document(user.uid).get().to_dict().get("role")
+            if role == "instructor":
+                learners = db.collection("users").where("role", "==", "learner").get()
+                st.subheader("List of Learners:")
+                for learner in learners:
+                    st.write(f"- {learner.to_dict()['name']}")
     elif choice == "Login":
         # Define the login form
         st.subheader("Login to your account")
