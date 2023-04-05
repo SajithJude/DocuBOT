@@ -36,7 +36,8 @@ def register():
         try:
             auth = firebase.auth()
             user = auth.create_user_with_email_and_password(email, password)
-            db = firebase.firestore()
+            db = firestore.client()
+
             db.collection("users").document(user["localId"]).set({
                 "name": name,
                 "institute": institute,
