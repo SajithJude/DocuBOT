@@ -58,6 +58,7 @@ def app():
         user = firebase.auth().current_user
         if user is not None:
             role = db.collection("users").document(user.uid).get().to_dict().get("role")
+            st.write(role)
             if role == "instructor":
                 learners = db.collection("users").where("role", "==", "learner").get()
                 st.subheader("List of Learners:")
