@@ -68,14 +68,15 @@ def app():
                 auth.sign_in_with_email_and_password(email, password)
                 st.success("Logged in!")
                 # user = firebase.auth().current_user
-                st.write(auth.to_dict())
-                # if user is not None:
-                role = db.collection("users").document(user.uid).get().to_dict().get("role")
-                if role == "instructor":
-                    learners = db.collection("users").where("role", "==", "learner").get()
-                    st.subheader("List of Learners:")
-                    for learner in learners:
-                        st.write(f"- {learner.to_dict()['name']}")
+                user = auth.get_user(uid)
+                # st.write(auth)
+                if user is not None:
+                    role = db.collection("users").document(user.uid).get().to_dict().get("role")
+                    if role == "instructor":
+                        learners = db.collection("users").where("role", "==", "learner").get()
+                        st.subheader("List of Learners:")
+                        for learner in learners:
+                            st.write(f"- {learner.to_dict()['name']}")
             except Exception as e:
                 st.error(e)
     elif choice == "Register":
