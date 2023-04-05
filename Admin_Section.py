@@ -4,7 +4,7 @@ import streamlit as st
 import pyrebase
 
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, firestore, auth
 
 
 
@@ -63,9 +63,9 @@ def app():
         password = st.text_input("Password", type="password")
         if st.button("Login"):
             try:
-                auth = firebase.auth()
+                Auth = firebase.auth()
                 db = firestore.client()
-                auth.sign_in_with_email_and_password(email, password)
+                Auth.sign_in_with_email_and_password(email, password)
                 st.success("Logged in!")
                 # user = firebase.auth().current_user
                 user = auth.get_user(uid)
