@@ -16,6 +16,7 @@ config = {
     "apiKey": "AIzaSyCnP2MswW3g6zpdNP0hx3aviXCej2ZmC0c",
     "authDomain": "docubot-2ac1d.firebaseapp.com",
     "projectId": "docubot-2ac1d",
+    'databaseURL': "https://docubot-2ac1d-default-rtdb.asia-southeast1.firebasedatabase.app/",
     "storageBucket": "docubot-2ac1d.appspot.com",
     "messagingSenderId": "1053457031443",
     "appId": "1:1053457031443:web:82e2dbbf519bd97435bae6",
