@@ -4,3 +4,5 @@ llama-index
 langchain
 PyPDF2
 streamlit-chat
+firebase_admin
+Pyrebase
