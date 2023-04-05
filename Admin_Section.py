@@ -50,9 +50,9 @@ def register():
 
 # Define the Streamlit app
 def app():
-    st.title("User Management App")
+    st.title("Docubot Flipick")
     menu = ["Home", "Login", "Register"]
-    choice = st.sidebar.selectbox("Select an option", menu)
+    choice = st.selectbox("Select an option", menu)
     if choice == "Home":
         st.subheader("Welcome to the User Management App")
     elif choice == "Login":
