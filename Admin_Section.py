@@ -2,7 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 
 import streamlit as st
-import Pyrebase
+import pyrebase
 
 
 
