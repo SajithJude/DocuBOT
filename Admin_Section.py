@@ -55,7 +55,7 @@ def app():
     choice = st.selectbox("Select an option", menu)
     if choice == "Home":
         st.subheader("Welcome to the User Management App")
-        user = firebase.auth().current_user
+        user = auth.current_user
         st.write(user)
         if user is not None:
             role = db.collection("users").document(user.uid).get().to_dict().get("role")
