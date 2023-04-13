@@ -79,7 +79,6 @@ elif choice == "Login":
             if user is not None:
                 role = db.collection("users").document(user.uid).get().to_dict().get("role")
                 if role == "instructor":
-
                     learners = db.collection("users").where("role", "==", "learner").get()
                     st.subheader("List of Learners:")
                     for learner in learners:
@@ -107,7 +106,8 @@ elif choice == "Login":
                                 st.error("Failed to assign assessment")
                         except Exception as e:
                             st.error(f"Invalid JSON format: {e}")
-
+        except Exception as e:
+            st.error(e)
 elif choice == "Register":
     # Show the registration form
     register()
