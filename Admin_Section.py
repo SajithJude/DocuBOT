@@ -2,7 +2,7 @@ import streamlit as st
 import pyrebase
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
-
+import json
 cred = credentials.Certificate("docubot-2ac1d-firebase-adminsdk-9ztu6-80050a35cd.json")
 
 def assign_assessment(user_id: str, assessment: dict):
