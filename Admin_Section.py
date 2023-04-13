@@ -80,9 +80,9 @@ elif choice == "Login":
                     st.session_state.selected_learner = st.selectbox("Select Learner to Assign Assessment", [learner.to_dict()["name"] for learner in learners], key="learner_selection")
 
                     # st.session_state.selected_learner = selected_learner
-                    assign_button = st.button("Assign Assessment")
+                    # assign_button = st.button("Assign Assessment")
 
-                    if assign_button:
+                    if st.session_state.selected_learner:
                         print("working assign")
 
                         # Find the selected learner's ID
