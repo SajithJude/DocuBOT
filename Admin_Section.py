@@ -85,7 +85,7 @@ elif choice == "Login":
                         st.write(f"- {learner.to_dict()['name']}")
 
                     # Add Assign Assessment button and input field
-                    assessment_json = st.text_area("Assessment JSON:")
+                    assessment_json = st.session_state.json_output
                     selected_learner = st.selectbox("Select Learner to Assign Assessment", [learner.to_dict()["name"] for learner in learners])
                     assign_button = st.button("Assign Assessment")
 
