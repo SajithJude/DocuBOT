@@ -11,6 +11,14 @@ from firebase_admin import credentials, firestore, auth
 cred = credentials.Certificate("docubot-2ac1d-firebase-adminsdk-9ztu6-80050a35cd.json")
 # firebase_admin.initialize_app(cred)
 
+
+def assign_assessment(user_id: str, assessment: dict):
+    db = firestore.client()
+    user_ref: DocumentReference = db.collection("users").document(user_id)
+    user_ref.set({"assessment": assessment}, merge=True)
+    return True
+
+
 # Initialize Pyrebase with the Firebase project credentials
 config = {
     "apiKey": "AIzaSyCnP2MswW3g6zpdNP0hx3aviXCej2ZmC0c",
@@ -49,39 +57,59 @@ def register():
             st.error(e)
 
 # Define the Streamlit app
-def app():
-    st.title("Docubot Flipick")
-    menu = ["Home", "Login", "Register"]
-    choice = st.selectbox("Select an option", menu)
-    if choice == "Home":
-        st.subheader("Welcome to the User Management App")
-        
-    elif choice == "Login":
-        # Define the login form
-        st.subheader("Login to your account")
-        email = st.text_input("Email")
-        password = st.text_input("Password", type="password")
-        if st.button("Login"):
-            try:
-                Auth = firebase.auth()
-                db = firestore.client()
-                Auth.sign_in_with_email_and_password(email, password)
-                st.success("Logged in!")
-                # user = firebase.auth().current_user
-                user = auth.get_user_by_email(email)
-                # st.write(auth)
-                if user is not None:
-                    role = db.collection("users").document(user.uid).get().to_dict().get("role")
-                    if role == "instructor":
-                        learners = db.collection("users").where("role", "==", "learner").get()
-                        st.subheader("List of Learners:")
-                        for learner in learners:
-                            st.write(f"- {learner.to_dict()['name']}")
-            except Exception as e:
-                st.error(e)
-    elif choice == "Register":
-        # Show the registration form
-        register()
 
-if __name__ == "__main__":
-    app()
+st.title("Docubot Flipick")
+menu = ["Home", "Login", "Register"]
+choice = st.selectbox("Select an option", menu)
+if choice == "Home":
+    st.subheader("Welcome to the User Management App")
+    
+elif choice == "Login":
+    # Define the login form
+    st.subheader("Login to your account")
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        try:
+            Auth = firebase.auth()
+            db = firestore.client()
+            Auth.sign_in_with_email_and_password(email, password)
+            st.success("Logged in!")
+            user = auth.get_user_by_email(email)
+            if user is not None:
+                role = db.collection("users").document(user.uid).get().to_dict().get("role")
+                if role == "instructor":
+
+                    learners = db.collection("users").where("role", "==", "learner").get()
+                    st.subheader("List of Learners:")
+                    for learner in learners:
+                        st.write(f"- {learner.to_dict()['name']}")
+
+                    # Add Assign Assessment button and input field
+                    assessment_json = st.text_area("Assessment JSON:")
+                    selected_learner = st.selectbox("Select Learner to Assign Assessment", [learner.to_dict()["name"] for learner in learners])
+                    assign_button = st.button("Assign Assessment")
+
+                    if assign_button:
+                        # Find the selected learner's ID
+                        selected_learner_id = None
+                        for learner in learners:
+                            if learner.to_dict()["name"] == selected_learner:
+                                selected_learner_id = learner.id
+                                break
+
+                        # Assign the assessment to the selected learner
+                        try:
+                            assessment_data = json.loads(assessment_json)
+                            if assign_assessment(selected_learner_id, assessment_data):
+                                st.success(f"Assessment assigned to {selected_learner}")
+                            else:
+                                st.error("Failed to assign assessment")
+                        except Exception as e:
+                            st.error(f"Invalid JSON format: {e}")
+
+elif choice == "Register":
+    # Show the registration form
+    register()
+
+
