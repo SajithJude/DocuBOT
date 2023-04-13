@@ -95,7 +95,7 @@ elif choice == "Login":
                         for learner in learners:
                             if learner.to_dict()["name"] == selected_learner:
                                 selected_learner_id = learner.id
-                                break
+                                # break
 
                         # Assign the assessment to the selected learner
                         try:
