@@ -1,38 +1,11 @@
 import streamlit as st
-
-
 import pyrebase
-
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
 
-
-
 cred = credentials.Certificate("docubot-2ac1d-firebase-adminsdk-9ztu6-80050a35cd.json")
-# firebase_admin.initialize_app(cred)
-
-
-def assign_assessment(user_id: str, assessment: dict):
-    db = firestore.client()
-    user_ref: DocumentReference = db.collection("users").document(user_id)
-    user_ref.set({"assessment": assessment}, merge=True)
-    return True
-
-
-# Initialize Pyrebase with the Firebase project credentials
-config = {
-    "apiKey": "AIzaSyCnP2MswW3g6zpdNP0hx3aviXCej2ZmC0c",
-    "authDomain": "docubot-2ac1d.firebaseapp.com",
-    "projectId": "docubot-2ac1d",
-    'databaseURL': "https://docubot-2ac1d-default-rtdb.asia-southeast1.firebasedatabase.app/",
-    "storageBucket": "docubot-2ac1d.appspot.com",
-    "messagingSenderId": "1053457031443",
-    "appId": "1:1053457031443:web:82e2dbbf519bd97435bae6",
-    "measurementId": "G-DM2R9ECXRV"
-}
 firebase = pyrebase.initialize_app(config)
 
-# # Define the registration form
 def register():
     st.subheader("Create a new account")
     name = st.text_input("Name")
@@ -56,8 +29,6 @@ def register():
         except Exception as e:
             st.error(e)
 
-# Define the Streamlit app
-
 st.title("Docubot Flipick")
 menu = ["Home", "Login", "Register"]
 choice = st.selectbox("Select an option", menu)
@@ -65,10 +36,9 @@ if choice == "Home":
     st.subheader("Welcome to the User Management App")
     
 elif choice == "Login":
-    # Define the login form
     st.subheader("Login to your account")
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
+    email = st.text_input("Email", value=st.session_state.get("email", ""))
+    password = st.text_input("Password", type="password", value=st.session_state.get("password", ""))
     if st.button("Login"):
         try:
             Auth = firebase.auth()
@@ -86,14 +56,15 @@ elif choice == "Login":
 
                     # Add Assign Assessment button and input field
                     assessment_json = st.session_state.json_output
-                    selected_learner = st.selectbox("Select Learner to Assign Assessment", [learner.to_dict()["name"] for learner in learners])
+                    selected_learner = st.selectbox("Select Learner to Assign Assessment", [learner.to_dict()["name"] for learner in learners], key="selected_learner")
+                    st.session_state.selected_learner = selected_learner
                     assign_button = st.button("Assign Assessment")
 
                     if assign_button:
                         # Find the selected learner's ID
                         selected_learner_id = None
                         for learner in learners:
-                            if learner.to_dict()["name"] == selected_learner:
+                            if learner.to_dict()["name"] == st.session_state.selected_learner:
                                 selected_learner_id = learner.id
                                 # break
 
@@ -101,15 +72,12 @@ elif choice == "Login":
                         try:
                             assessment_data = json.loads(assessment_json)
                             if assign_assessment(selected_learner_id, assessment_data):
-                                st.success(f"Assessment assigned to {selected_learner}")
+                                st.success(f"Assessment assigned to {st.session_state.selected_learner}")
                             else:
                                 st.error("Failed to assign assessment")
                         except Exception as e:
-                            st.error(f"Invalid JSON format: {e}")
-        except Exception as e:
-            st.error(e)
+                            st.error(e)                        
 elif choice == "Register":
-    # Show the registration form
+
+# Show the registration form
     register()
-
-
