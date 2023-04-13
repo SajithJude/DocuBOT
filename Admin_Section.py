@@ -85,12 +85,12 @@ elif choice == "Login":
                     if assign_button and st.session_state.selected_learner:
 
                         # Find the selected learner's ID
-                        selected_learner_id = None
+                        st.session_state.selected_learner_id = None
                         for learner in learners:
                             if learner.to_dict()["name"] == st.session_state.selected_learner:
-                                selected_learner_id = learner.id
-                                st.write(selected_learner_id)
-                                break
+                                st.session_state.selected_learner_id = learner.id
+                                st.write(st.session_state.selected_learner_id)
+                                pass 
 
                         # Assign the assessment to the selected learner
                         try:
