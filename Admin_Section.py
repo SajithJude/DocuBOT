@@ -76,7 +76,10 @@ elif choice == "Login":
                             else:
                                 st.error("Failed to assign assessment")
                         except Exception as e:
-                            st.error(e)                        
+                            
+                            st.error(f"Invalid JSON format: {e}")
+        except Exception as e:
+            st.error(e)                        
 elif choice == "Register":
 
 # Show the registration form
