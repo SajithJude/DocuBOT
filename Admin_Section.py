@@ -77,11 +77,12 @@ elif choice == "Login":
 
                     # Add Assign Assessment button and input field
                     assessment_json = st.session_state.json_output
-                    selected_learner = st.selectbox("Select Learner to Assign Assessment", [learner.to_dict()["name"] for learner in learners], key="selected_learner")
-                    st.session_state.selected_learner = selected_learner
+                    st.session_state.selected_learner = st.selectbox("Select Learner to Assign Assessment", [learner.to_dict()["name"] for learner in learners], key="learner_selection")
+
+                    # st.session_state.selected_learner = selected_learner
                     assign_button = st.button("Assign Assessment")
 
-                    if assign_button:
+                    if assign_button and st.session_state.selected_learner:
                         # Find the selected learner's ID
                         selected_learner_id = None
                         for learner in learners:
