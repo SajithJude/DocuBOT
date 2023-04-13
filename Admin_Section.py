@@ -82,26 +82,26 @@ elif choice == "Login":
                     # st.session_state.selected_learner = selected_learner
                     # assign_button = st.button("Assign Assessment")
 
-                    if st.session_state.selected_learner:
-                        print("working assign")
+                    # if st.session_state.selected_learner:
+                    #     print("working assign")
 
                         # Find the selected learner's ID
-                        st.session_state.selected_learner_id = None
-                        for learner in learners:
-                            if learner.to_dict()["name"] == st.session_state.selected_learner:
-                                st.session_state.selected_learner_id = learner.id
-                                st.write(st.session_state.selected_learner_id)
-                                pass 
+                    st.session_state.selected_learner_id = None
+                    for learner in learners:
+                        if learner.to_dict()["name"] == st.session_state.selected_learner:
+                            st.session_state.selected_learner_id = learner.id
+                            st.write(st.session_state.selected_learner_id)
+                            pass 
 
-                        # Assign the assessment to the selected learner
-                        try:
-                            assessment_data = assessment_json
-                            if assign_assessment(st.session_state.selected_learner_id, assessment_data):
-                                st.success(f"Assessment assigned to {st.session_state.selected_learner}")
-                            else:
-                                st.error("Failed to assign assessment")
-                        except Exception as e:
-                            st.error(f"Invalid JSON format: {e}")
+                    # Assign the assessment to the selected learner
+                    try:
+                        assessment_data = assessment_json
+                        if assign_assessment(st.session_state.selected_learner_id, assessment_data):
+                            st.success(f"Assessment assigned to {st.session_state.selected_learner}")
+                        else:
+                            st.error("Failed to assign assessment")
+                    except Exception as e:
+                        st.error(f"Invalid JSON format: {e}")
         except Exception as e:
             st.error(e)                        
 elif choice == "Register":
