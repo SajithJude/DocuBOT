@@ -82,7 +82,7 @@ elif choice == "Login":
                     # st.session_state.selected_learner = selected_learner
                     assign_button = st.button("Assign Assessment")
 
-                    if assign_button and st.session_state.selected_learner:
+                    if assign_button:
                         print("working assign")
 
                         # Find the selected learner's ID
