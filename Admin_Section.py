@@ -4,6 +4,27 @@ import firebase_admin
 from firebase_admin import credentials, firestore, auth
 
 cred = credentials.Certificate("docubot-2ac1d-firebase-adminsdk-9ztu6-80050a35cd.json")
+
+def assign_assessment(user_id: str, assessment: dict):
+    db = firestore.client()
+    user_ref: DocumentReference = db.collection("users").document(user_id)
+    user_ref.set({"assessment": assessment}, merge=True)
+    return True
+
+
+# Initialize Pyrebase with the Firebase project credentials
+config = {
+    "apiKey": "AIzaSyCnP2MswW3g6zpdNP0hx3aviXCej2ZmC0c",
+    "authDomain": "docubot-2ac1d.firebaseapp.com",
+    "projectId": "docubot-2ac1d",
+    'databaseURL': "https://docubot-2ac1d-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    "storageBucket": "docubot-2ac1d.appspot.com",
+    "messagingSenderId": "1053457031443",
+    "appId": "1:1053457031443:web:82e2dbbf519bd97435bae6",
+    "measurementId": "G-DM2R9ECXRV"
+}
+firebase = pyrebase.initialize_app(config)
+
 firebase = pyrebase.initialize_app(config)
 
 def register():
@@ -76,7 +97,7 @@ elif choice == "Login":
                             else:
                                 st.error("Failed to assign assessment")
                         except Exception as e:
-                            
+
                             st.error(f"Invalid JSON format: {e}")
         except Exception as e:
             st.error(e)                        
