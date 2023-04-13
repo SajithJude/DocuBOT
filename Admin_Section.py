@@ -95,7 +95,7 @@ elif choice == "Login":
 
                         # Assign the assessment to the selected learner
                         try:
-                            assessment_data = json.loads(assessment_json)
+                            assessment_data = assessment_json
                             if assign_assessment(selected_learner_id, assessment_data):
                                 st.success(f"Assessment assigned to {st.session_state.selected_learner}")
                             else:
