@@ -53,7 +53,7 @@ if "username" in streamlit.session_state:
     user = [u for u in users if u.username == streamlit.session_state['username']][0]
     if user.user_type == "learner":
         questions = user.assignments
-        st.write(questions)
+        streamlit.write(questions)
         if 'generated' not in streamlit.session_state:
             streamlit.session_state['generated'] = []
 
