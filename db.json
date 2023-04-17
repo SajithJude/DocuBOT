@@ -19,14 +19,7 @@
       "user_type": "learner",
       "instructor": "instructor1",
       "assignments": [
-        {
-          "title": "Assignment 1",
-          "description": "Solve 10 math problems."
-        },
-        {
-          "title": "Assignment 2",
-          "description": "Write an essay on climate change."
-        }
+       
       ]
     },
     {
