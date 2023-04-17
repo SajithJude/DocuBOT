@@ -3,6 +3,7 @@ import openai
 import os
 import json
 import base64
+from typing import List
 # import streamlit as st
 from pathlib import Path
 import json
