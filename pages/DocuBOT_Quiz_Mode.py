@@ -2,6 +2,7 @@ import streamlit as streamlit
 from streamlit_chat import message
 import json
 from typing import List
+from pathlib import Path
 
 DB_FILE = "db.json"
 
