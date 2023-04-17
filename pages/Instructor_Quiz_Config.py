@@ -78,6 +78,8 @@ def main():
         st.warning("Please log in as an instructor to assign responses.")
 
 if __name__ == "__main__":
+    main()
+
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
@@ -138,7 +140,6 @@ if __name__ == "__main__":
         
         # Display a download button to download the edited version
         edited_json = json.dumps(st.session_state.json_output, indent=2)
-        main()
     except AttributeError:
         st.warning("Type a topic and generate some questions to refine them")
 
