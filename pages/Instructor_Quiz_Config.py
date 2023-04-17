@@ -55,31 +55,30 @@ def main():
         instructor = [u for u in users if u.username == st.session_state['username']][0]
         
         # Upload the JSON file with responses
-        uploaded_file = st.file_uploader("Upload the responses JSON file here")
+        # uploaded_file = st.file_uploader("Upload the responses JSON file here")
         
-        if uploaded_file is not None:
-            responses = json.load(uploaded_file)
+        # if uploaded_file is not None:
+        responses = json.load(st.session_state.json_output)
 
-            # Choose a student to assign the responses
-            students = [u for u in users if u.user_type == "learner" and u.instructor == instructor.username]
-            student_usernames = [s.username for s in students]
-            selected_student = st.selectbox("Select the student to assign the responses", student_usernames)
+        # Choose a student to assign the responses
+        students = [u for u in users if u.user_type == "learner" and u.instructor == instructor.username]
+        student_usernames = [s.username for s in students]
+        selected_student = st.selectbox("Select the student to assign the responses", student_usernames)
 
-            if st.button("Assign Responses"):
-                # Find the selected student and update their assignments
-                for student in students:
-                    if student.username == selected_student:
-                        student.assignments.extend(responses)
-                        break
+        if st.button("Assign Responses"):
+            # Find the selected student and update their assignments
+            for student in students:
+                if student.username == selected_student:
+                    student.assignments.extend(responses)
+                    break
 
-                # Save the updated users to the db.json file
-                save_users(users)
-                st.success(f"Responses assigned to {selected_student}.")
+            # Save the updated users to the db.json file
+            save_users(users)
+            st.success(f"Responses assigned to {selected_student}.")
     else:
         st.warning("Please log in as an instructor to assign responses.")
 
 if __name__ == "__main__":
-    main()
 
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -144,6 +143,7 @@ if __name__ == "__main__":
     except AttributeError:
         st.warning("Type a topic and generate some questions to refine them")
 
+    main()
 
 
 
