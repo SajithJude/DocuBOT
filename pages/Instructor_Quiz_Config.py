@@ -58,7 +58,7 @@ def main():
         # uploaded_file = st.file_uploader("Upload the responses JSON file here")
         
         # if uploaded_file is not None:
-        responses = json.load(st.session_state.json_output)
+        responses = st.session_state.json_output
 
         # Choose a student to assign the responses
         students = [u for u in users if u.user_type == "learner" and u.instructor == instructor.username]
