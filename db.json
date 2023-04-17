@@ -1,1 +1,49 @@
-{}
+[
+    {
+      "username": "instructor1",
+      "password": "password1",
+      "user_type": "instructor",
+      "instructor": null,
+      "assignments": []
+    },
+    {
+      "username": "instructor2",
+      "password": "password2",
+      "user_type": "instructor",
+      "instructor": null,
+      "assignments": []
+    },
+    {
+      "username": "learner1",
+      "password": "password3",
+      "user_type": "learner",
+      "instructor": "instructor1",
+      "assignments": [
+        {
+          "title": "Assignment 1",
+          "description": "Solve 10 math problems."
+        },
+        {
+          "title": "Assignment 2",
+          "description": "Write an essay on climate change."
+        }
+      ]
+    },
+    {
+      "username": "learner2",
+      "password": "password4",
+      "user_type": "learner",
+      "instructor": "instructor2",
+      "assignments": [
+        {
+          "title": "Assignment 3",
+          "description": "Read chapters 1-3 of the book."
+        },
+        {
+          "title": "Assignment 4",
+          "description": "Prepare a presentation on a topic of your choice."
+        }
+      ]
+    }
+  ]
+  
