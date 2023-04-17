@@ -1,110 +1,88 @@
 import streamlit as st
-import pyrebase
-import firebase_admin
-from firebase_admin import credentials, firestore, auth
 import json
-cred = credentials.Certificate("docubot-2ac1d-firebase-adminsdk-9ztu6-80050a35cd.json")
+from typing import List
+from pathlib import Path
 
-def assign_assessment(user_id: str, assessment: dict):
-    db = firestore.client()
-    user_ref: DocumentReference = db.collection("users").document(user_id)
-    user_ref.set({"assessment": assessment}, merge=True)
-    return True
+DB_FILE = "db.json"
 
 
-# Initialize Pyrebase with the Firebase project credentials
-config = {
-    "apiKey": "AIzaSyCnP2MswW3g6zpdNP0hx3aviXCej2ZmC0c",
-    "authDomain": "docubot-2ac1d.firebaseapp.com",
-    "projectId": "docubot-2ac1d",
-    'databaseURL': "https://docubot-2ac1d-default-rtdb.asia-southeast1.firebasedatabase.app/",
-    "storageBucket": "docubot-2ac1d.appspot.com",
-    "messagingSenderId": "1053457031443",
-    "appId": "1:1053457031443:web:82e2dbbf519bd97435bae6",
-    "measurementId": "G-DM2R9ECXRV"
-}
-firebase = pyrebase.initialize_app(config)
+class User:
+    def __init__(self, username, password, user_type, instructor=None, assignments=None):
+        self.username = username
+        self.password = password
+        self.user_type = user_type
+        self.instructor = instructor
+        self.assignments = assignments if assignments else []
 
-firebase = pyrebase.initialize_app(config)
+    def to_dict(self):
+        return {
+            "username": self.username,
+            "password": self.password,
+            "user_type": self.user_type,
+            "instructor": self.instructor,
+            "assignments": self.assignments,
+        }
 
-def register():
-    st.subheader("Create a new account")
-    name = st.text_input("Name")
-    institute = st.text_input("Institute")
-    email = st.text_input("Email")
+
+def load_users() -> List[User]:
+    if Path(DB_FILE).is_file():
+        with open(DB_FILE, "r") as f:
+            users_data = json.load(f)
+        return [User(**user_data) for user_data in users_data]
+    else:
+        return []
+
+
+def save_users(users: List[User]):
+    users_data = [user.to_dict() for user in users]
+    with open(DB_FILE, "w") as f:
+        json.dump(users_data, f)
+
+
+def main():
+    st.title("Login or Register")
+
+    users = load_users()
+    username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    role = st.selectbox("User Role", ["learner", "instructor"])
-    if st.button("Register"):
-        try:
-            auth = firebase.auth()
-            user = auth.create_user_with_email_and_password(email, password)
-            db = firestore.client()
 
-            db.collection("users").document(user["localId"]).set({
-                "name": name,
-                "institute": institute,
-                "email": email,
-                "role": role
-            })
-            st.success("Account created!")
-        except Exception as e:
-            st.error(e)
-
-st.title("Docubot Flipick")
-menu = ["Home", "Login", "Register"]
-choice = st.selectbox("Select an option", menu)
-if choice == "Home":
-    st.subheader("Welcome to the User Management App")
-    
-elif choice == "Login":
-    st.subheader("Login to your account")
-    email = st.text_input("Email", value=st.session_state.get("email", ""))
-    password = st.text_input("Password", type="password", value=st.session_state.get("password", ""))
     if st.button("Login"):
-        try:
-            Auth = firebase.auth()
-            db = firestore.client()
-            Auth.sign_in_with_email_and_password(email, password)
-            st.success("Logged in!")
-            user = auth.get_user_by_email(email)
-            if user is not None:
-                role = db.collection("users").document(user.uid).get().to_dict().get("role")
-                if role == "instructor":
-                    learners = db.collection("users").where("role", "==", "learner").get()
-                    st.subheader("List of Learners:")
-                    for learner in learners:
-                        st.write(f"- {learner.to_dict()['name']}")
+        user = [user for user in users if user.username == username and user.password == password]
+        if user:
+            user = user[0]
+            if user.user_type == "instructor":
+                st.write(f"Welcome, {user.username}! You are an instructor.")
+                st.write("List of your students:")
+                students = [u for u in users if u.user_type == "learner" and u.instructor == user.username]
+                for student in students:
+                    st.write(student.username)
+            else:
+                st.write(f"Welcome, {user.username}! You are a learner.")
+                st.write(f"Your instructor is: {user.instructor}")
+                st.write("Your assignments:")
+                for assignment in user.assignments:
+                    st.write(assignment)
+        else:
+            st.write("Invalid username or password.")
 
-                    # Add Assign Assessment button and input field
-                    assessment_json = st.session_state.json_output
-                    st.session_state.selected_learner = st.selectbox("Select Learner to Assign Assessment", [learner.to_dict()["name"] for learner in learners], key="learner_selection")
+    st.title("Register")
+    user_type = st.selectbox("User Type", ["learner", "instructor"])
+    if user_type == "learner":
+        instructors = [user for user in users if user.user_type == "instructor"]
+        instructor_usernames = [instructor.username for instructor in instructors]
+        selected_instructor = st.selectbox("Select an Instructor", instructor_usernames)
 
-                    # st.session_state.selected_learner = selected_learner
-                    # assign_button = st.button("Assign Assessment")
+    if st.button("Register"):
+        if user_type == "instructor":
+            new_user = User(username, password, user_type)
+        else:
+            new_user = User(username, password, user_type, selected_instructor)
 
-                    # if st.session_state.selected_learner:
-                    #     print("working assign")
+        users.append(new_user)
+        save_users(users)
+        st.write(f"User {username} registered successfully as a {user_type}.")
 
-                        # Find the selected learner's ID
-                    st.session_state.selected_learner_id = None
-                    for learner in learners:
-                        if learner.to_dict()["name"] == st.session_state.selected_learner:
-                            st.session_state.selected_learner_id = learner.id
-                            st.write(st.session_state.selected_learner_id)
-                            pass 
 
-                    # Assign the assessment to the selected learner
-                    try:
-                        assessment_data = assessment_json
-                        if assign_assessment(st.session_state.selected_learner_id, assessment_data):
-                            st.success(f"Assessment assigned to {st.session_state.selected_learner}")
-                        else:
-                            st.error("Failed to assign assessment")
-                    except Exception as e:
-                        st.error(f"Invalid JSON format: {e}")
-        except Exception as e:
-            st.error(e)                        
-elif choice == "Register":
+if __name__ == "__main__":
+    main()
 
-# Show the registration form
-    register()
