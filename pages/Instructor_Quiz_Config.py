@@ -65,7 +65,7 @@ def main():
         student_usernames = [s.username for s in students]
         selected_student = st.selectbox("Select the student to assign the responses", student_usernames)
 
-        if st.button("Assign Responses"):
+        if st.button("Assign Assignment"):
             # Find the selected student and update their assignments
             for student in students:
                 if student.username == selected_student:
