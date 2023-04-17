@@ -1,6 +1,7 @@
 import streamlit as streamlit
 from streamlit_chat import message
 import json
+from typing import List
 
 DB_FILE = "db.json"
 
@@ -101,7 +102,7 @@ if "username" in streamlit.session_state:
                 file_name="responses.json",
                 mime="application/json"
             )
-            
+
     if streamlit.session_state['generated']:
         for i in range(len(streamlit.session_state['generated'])-1, -1, -1):
             message(streamlit.session_state["generated"][i], key=str(i))
