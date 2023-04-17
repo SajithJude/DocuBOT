@@ -51,7 +51,7 @@ users = load_users()
 
 if "username" in streamlit.session_state:
     user = [u for u in users if u.username == streamlit.session_state['username']][0]
-    if user.user_type == "student":
+    if user.user_type == "learner":
         questions = user.assignments
         
         if 'generated' not in streamlit.session_state:
