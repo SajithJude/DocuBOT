@@ -73,8 +73,8 @@ def main():
 
         with tab1:
             st.subheader("Login")
-            username = st.text_input("Username")
-            password = st.text_input("Password", type="password")
+            username = st.text_input("Username (Login)")
+            password = st.text_input("Password (Login)", type="password")
 
             if st.button("Login"):
                 user = [user for user in users if user.username ==
@@ -90,14 +90,12 @@ def main():
 
         with tab2:
             st.subheader("Register")
-
-            st.write("hi1")
-            username_reg = st.text_input("Username")
-            password_reg = st.text_input("Password", type="password")
             user_type = st.selectbox(
                 "User Type", ["learner", "instructor"])
-            st.write("hi")
             if user_type == "instructor":
+                username_reg = st.text_input("Username (Instructor)")
+                password_reg = st.text_input(
+                    "Password (Instructor)", type="password")
                 new_user = User(username_reg, password_reg, user_type)
             else:
                 instructors = [
@@ -106,10 +104,17 @@ def main():
                     instructor.username for instructor in instructors]
                 selected_instructor = st.selectbox(
                     "Select an Instructor", instructor_usernames)
+                username_reg = st.text_input("Username (Learner)")
+                password_reg = st.text_input(
+                    "Password (Learner)",
+                    type="password")
 
-                if st.button("Register"):
+            if st.button("Register"):
+                if not username_reg or not password_reg:
+                    st.write("Please enter a username and password.")
+                else:
                     new_user = User(
-                        username_reg, password_reg, user_type, selected_instructor)
+                        username_reg, password_reg, user_type, instructor=selected_instructor)
 
                     users.append(new_user)
                     save_users(users)
