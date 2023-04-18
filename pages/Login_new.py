@@ -106,20 +106,19 @@ def main():
                     "Select an Instructor", instructor_usernames)
                 username_reg = st.text_input("Username (Learner)")
                 password_reg = st.text_input(
-                    "Password (Learner)",
-                    type="password")
+                    "Password (Learner)", type="password")
 
-            if st.button("Register"):
-                if not username_reg or not password_reg:
-                    st.write("Please enter a username and password.")
-                else:
-                    new_user = User(
-                        username_reg, password_reg, user_type, instructor=selected_instructor)
+                if st.button("Register"):
+                    if not username_reg or not password_reg:
+                        st.write("Please enter a username and password.")
+                    else:
+                        new_user = User(
+                            username_reg, password_reg, user_type, instructor=selected_instructor)
 
-                    users.append(new_user)
-                    save_users(users)
-                    st.write(
-                        f"User {username_reg} registered successfully as a {user_type}.")
+                        users.append(new_user)
+                        save_users(users)
+                        st.write(
+                            f"User {username_reg} registered successfully as a {user_type}.")
 
     if st.button("Logout"):
         st.session_state.pop('username', None)
