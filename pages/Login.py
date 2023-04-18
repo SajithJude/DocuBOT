@@ -8,8 +8,9 @@ container.markdown(
     f'</div>', unsafe_allow_html=True)
 
 # Add input fields to the container
-email = container.text_input("Email")
-password = container.text_input("Password", type="password")
+with container:
+    email = container.text_input("Email")
+    password = container.text_input("Password", type="password")
 
 # Add submit button to the container
 if container.button("Submit"):
