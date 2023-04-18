@@ -92,10 +92,10 @@ def main():
             st.subheader("Register")
             user_type = st.selectbox(
                 "User Type", ["learner", "instructor"])
-            username = st.text_input("Username")
-            password = st.text_input("Password", type="password")
+            username_reg = st.text_input("Username")
+            password_reg = st.text_input("Password", type="password")
             if user_type == "instructor":
-                new_user = User(username, password, user_type)
+                new_user = User(username_reg, password_reg, user_type)
             else:
                 instructors = [
                     user for user in users if user.user_type == "instructor"]
@@ -103,8 +103,6 @@ def main():
                     instructor.username for instructor in instructors]
                 selected_instructor = st.selectbox(
                     "Select an Instructor", instructor_usernames)
-                username_reg = st.text_input("Username")
-                password_reg = st.text_input("Password", type="password")
 
                 if st.button("Register"):
                     new_user = User(
