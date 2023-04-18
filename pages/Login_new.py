@@ -90,11 +90,12 @@ def main():
 
         with tab2:
             st.subheader("Register")
-            user_type = st.selectbox(
-                "User Type", ["learner", "instructor"])
-            st.write("hi")
+
+            st.write("hi1")
             username_reg = st.text_input("Username")
             password_reg = st.text_input("Password", type="password")
+            user_type = st.selectbox(
+                "User Type", ["learner", "instructor"])
             st.write("hi")
             if user_type == "instructor":
                 new_user = User(username_reg, password_reg, user_type)
