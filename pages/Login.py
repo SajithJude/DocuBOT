@@ -7,7 +7,8 @@ with container:
 
     with tab1:
         st.subheader("Login")
-        user_type = st.radio("Select user type", ("student", "instructor"))
+        user_type = st.radio("Select user type",
+                             ("student", "instructor"), format="horizontal")
         email = st.text_input("Email")
         password = st.text_input("Password", type="password")
         if st.button("Login"):
