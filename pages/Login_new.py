@@ -92,8 +92,10 @@ def main():
             st.subheader("Register")
             user_type = st.selectbox(
                 "User Type", ["learner", "instructor"])
+            st.write("hi")
             username_reg = st.text_input("Username")
             password_reg = st.text_input("Password", type="password")
+            st.write("hi")
             if user_type == "instructor":
                 new_user = User(username_reg, password_reg, user_type)
             else:
@@ -119,5 +121,5 @@ def main():
         st.write("Logged out successfully.")
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
