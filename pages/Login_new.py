@@ -119,5 +119,5 @@ def main():
         st.write("Logged out successfully.")
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
