@@ -39,7 +39,6 @@ def save_users(users: List[User]):
         json.dump(users_data, f)
 
 
-
 def main():
     st.title("Login or Register")
 
@@ -50,7 +49,8 @@ def main():
         password = st.text_input("Password", type="password")
 
         if st.button("Login"):
-            user = [user for user in users if user.username == username and user.password == password]
+            user = [user for user in users if user.username ==
+                    username and user.password == password]
             if user:
                 user = user[0]
                 st.session_state['username'] = user.username
@@ -59,27 +59,31 @@ def main():
             else:
                 st.write("Invalid username or password.")
     else:
-        user = [u for u in users if u.username == st.session_state['username']][0]
+        user = [u for u in users if u.username ==
+                st.session_state['username']][0]
         if user.user_type == "instructor":
             st.write(f"Welcome, {user.username}! You are an instructor.")
             st.write("List of your students:")
-            students = [u for u in users if u.user_type == "learner" and u.instructor == user.username]
+            students = [u for u in users if u.user_type ==
+                        "learner" and u.instructor == user.username]
             for student in students:
                 st.write(student.username)
         else:
             st.write(f"Welcome, {user.username}! You are a learner.")
             st.write(f"Your instructor is: {user.instructor}")
-            st.write("Your assignments:")
-            for assignment in user.assignments:
-                st.write(assignment)
-                
+            # st.write("Your assignments:")
+            # for assignment in user.assignments:
+            #     st.write(assignment)
 
     st.title("Register")
     user_type = st.selectbox("User Type", ["learner", "instructor"])
     if user_type == "learner":
-        instructors = [user for user in users if user.user_type == "instructor"]
-        instructor_usernames = [instructor.username for instructor in instructors]
-        selected_instructor = st.selectbox("Select an Instructor", instructor_usernames)
+        instructors = [
+            user for user in users if user.user_type == "instructor"]
+        instructor_usernames = [
+            instructor.username for instructor in instructors]
+        selected_instructor = st.selectbox(
+            "Select an Instructor", instructor_usernames)
 
     if st.button("Register"):
         if user_type == "instructor":
@@ -90,12 +94,12 @@ def main():
         users.append(new_user)
         save_users(users)
         st.write(f"User {username} registered successfully as a {user_type}.")
- 
+
     if st.button("Logout"):
         st.session_state.pop('username', None)
         st.session_state.pop('user_type', None)
         st.write("Logged out successfully.")
 
+
 if __name__ == "__main__":
     main()
-
