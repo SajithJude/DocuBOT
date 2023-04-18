@@ -103,15 +103,17 @@ def main():
                     instructor.username for instructor in instructors]
                 selected_instructor = st.selectbox(
                     "Select an Instructor", instructor_usernames)
+                username_reg = st.text_input("Username")
+                password_reg = st.text_input("Password", type="password")
 
                 if st.button("Register"):
                     new_user = User(
-                        username, password, user_type, selected_instructor)
+                        username_reg, password_reg, user_type, selected_instructor)
 
                     users.append(new_user)
                     save_users(users)
                     st.write(
-                        f"User {username} registered successfully as a {user_type}.")
+                        f"User {username_reg} registered successfully as a {user_type}.")
 
     if st.button("Logout"):
         st.session_state.pop('username', None)
