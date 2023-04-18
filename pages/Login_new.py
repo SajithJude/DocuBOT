@@ -96,7 +96,12 @@ def main():
                 username_reg = st.text_input("Username (Instructor)")
                 password_reg = st.text_input(
                     "Password (Instructor)", type="password")
-                new_user = User(username_reg, password_reg, user_type)
+                if username_reg and password_reg:
+                    new_user = User(username_reg, password_reg, user_type)
+                    users.append(new_user)
+                    save_users(users)
+                    st.write(
+                        f"User {username_reg} registered successfully as a {user_type}.")
             else:
                 instructors = [
                     user for user in users if user.user_type == "instructor"]
