@@ -200,8 +200,9 @@ def main():
                 "User Type", ["learner", "instructor"])
             username = st.text_input("Username")
             password = st.text_input("Password", type="password")
-
-            if user_type == "learner":
+            if user_type == "instructor":
+                new_user = User(username, password, user_type)
+            else:
                 instructors = [
                     user for user in users if user.user_type == "instructor"]
                 instructor_usernames = [
@@ -209,18 +210,20 @@ def main():
                 selected_instructor = st.selectbox(
                     "Select an Instructor", instructor_usernames)
 
-            if st.button("Register"):
-                if user_type == "instructor":
-                    new_user = User(username, password, user_type)
-                else:
+                if st.button("Register"):
                     new_user = User(
                         username, password, user_type, selected_instructor)
 
-                users.append(new_user)
-                save_users(users)
-                st.write(
-                    f"User {username} registered successfully as a {user_type}.")
+                    users.append(new_user)
+                    save_users(users)
+                    st.write(
+                        f"User {username} registered successfully as a {user_type}.")
 
     if st.button("Logout"):
         st.session_state.pop('username', None)
-        st.session_state.pop
+        st.session_state.pop('user_type', None)
+        st.write("Logged out successfully.")
+
+
+if __name__ == "__main__":
+    main()
