@@ -1,15 +1,15 @@
 import streamlit as st
 
-# Create a card container with shadow effect
-container = st.container()
-container.markdown(
-    f'<div style="border-radius: 10px; box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1); padding: 20px;">'
-    f'<h2 style="text-align: center;">Login Form</h2>'
-    f'<form>'
-    f'<label for="email">Email:</label><br>'
-    f'<input type="email" id="email" name="email"><br>'
-    f'<label for="password">Password:</label><br>'
-    f'<input type="password" id="password" name="password"><br><br>'
-    f'<input type="submit" value="Submit">'
-    f'</form>'
-    f'</div>', unsafe_allow_html=True)
+tab1, tab2 = st.tabs(["login", "register"])
+
+with tab1:
+    st.subheader("Login")
+    user_type = st.radio("Select user type", ("student", "instructor"))
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        # Login button logic goes here
+        pass
+
+with tab2:
+    st.subheader("Register")
