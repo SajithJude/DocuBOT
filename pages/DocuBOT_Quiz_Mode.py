@@ -5,7 +5,9 @@ from typing import List
 from pathlib import Path
 
 DB_FILE = "db.json"
-
+def get_text():
+    input_text = st.text_input("You: ","", key="input")
+    return input_text
 
 class User:
     def __init__(self, username, password, user_type, instructor=None, assignments=None):
@@ -63,21 +65,12 @@ if "username" in st.session_state:
         if 'current_question' not in st.session_state:
             st.session_state['current_question'] = 0
 
-        def get_text():
-            input_text = st.text_input("You: ", "", key="input")
-            submit_button = st.button("Submit Answer", key="submit_button")
-            return input_text, submit_button
+         
 
         if st.session_state['current_question'] < len(questions):
             current_question = questions[st.session_state['current_question']]
             message(current_question['question'], is_user=False, key=str(st.session_state['current_question']))
-            user_input, submit_button = get_text()
-
-            if submit_button and user_input:
-                st.session_state['past'].append(user_input)
-                st.session_state['current_question'] += 1
-                st.text_input("You: ", value="", key="input")  # Reset the text input field
-
+            user_input = get_text()
 
             if user_input:
                 st.session_state['past'].append(user_input)
