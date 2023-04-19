@@ -6,9 +6,6 @@ from pathlib import Path
 
 DB_FILE = "db.json"
 
-def get_text():
-    input_text = st.text_input("You: ","", key="input")
-    return input_text
 
 class User:
     def __init__(self, username, password, user_type, instructor=None, assignments=None):
@@ -56,18 +53,15 @@ if "username" in st.session_state:
     user = [u for u in users if u.username == st.session_state['username']][0]
     if user.user_type == "learner":
         questions = user.assignments
-        # st.write(questions)
+
         if 'generated' not in st.session_state:
             st.session_state['generated'] = []
 
         if 'past' not in st.session_state:
             st.session_state['past'] = []
-            
+
         if 'current_question' not in st.session_state:
             st.session_state['current_question'] = 0
-
-         
-        # submit = st.button("next",key="submit")
 
         if st.session_state['current_question'] < len(questions):
             current_question = questions[st.session_state['current_question']]
@@ -80,20 +74,12 @@ if "username" in st.session_state:
             if submit_button and user_input:
                 st.session_state['past'].append(user_input)
                 st.session_state['current_question'] += 1
-                    
-            if st.session_state['generated']:
-                for i in range(len(st.session_state['generated'])-1, -1, -1):
-                    message(st.session_state["generated"][i], key=str(i))
-                    message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-                    st.sidebar.write("Bot: ", st.session_state["generated"][i])
-
 
             st.sidebar.header("Conversation History")
             for i, question in enumerate(questions):
                 if i < st.session_state['current_question']:
                     st.sidebar.write(question['question'])
                     st.sidebar.write("You: " + st.session_state['past'][i])
-
 
         else:
             responses = []
@@ -103,9 +89,7 @@ if "username" in st.session_state:
                     "response": st.session_state['past'][i]
                 }
                 responses.append(response)
-            
-            # with open("responses.json", "w") as outfile:
-            #     json.dump(responses, outfile)
+
             user.assignments = responses
             save_users(users)
 
@@ -119,6 +103,11 @@ if "username" in st.session_state:
                 mime="application/json"
             )
 
-    
+    if st.session_state['generated']:
+        for i in range(len(st.session_state['generated'])-1, -1, -1):
+            message(st.session_state["generated"][i], key=str(i))
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+            st.sidebar.write("Bot: ", st.session_state["generated"][i])
+
 else:
     st.info("Please Login or Register")
