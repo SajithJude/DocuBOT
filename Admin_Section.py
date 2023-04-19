@@ -139,6 +139,7 @@ if __name__ == "__main__":
         user = [u for u in users if u.username == st.session_state['username']][0]
         if user.user_type == "instructor":
             show_pages([
+            Page("Admin_Section.py", "Home", "🏠"),
             Page("pages/Admin_Controls.py",  "Admin_Controls"),
             Page("pages/Instructor_Quiz_Config.py",  "Question_Generation")
             ])
