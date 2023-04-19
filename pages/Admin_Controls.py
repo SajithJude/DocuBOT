@@ -6,6 +6,7 @@ import openai
 from pathlib import Path
 from llama_index import download_loader
 from typing import List
+import json
 
 
 openai.api_key = os.getenv("API_KEY")
