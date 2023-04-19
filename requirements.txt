@@ -7,3 +7,4 @@ streamlit-chat
 firebase_admin
 pycryptodome
 pyrebase
+st-pages

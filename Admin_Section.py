@@ -2,6 +2,23 @@ import streamlit as st
 import json
 from typing import List
 from pathlib import Path
+from st_pages import Page, show_pages, add_page_title
+
+# Optional -- adds the title and icon to the current page
+add_page_title()
+
+# Specify what pages should be shown in the sidebar, and what their titles and icons
+# should be
+show_pages(
+    [
+        Page("Admin_Section.py", "Login", "🏠"),
+        Page("pages/Instructor_Quiz_Config.py", "Page 2", ":Question_Generation:"),
+        Page("pages/DocuBOT.py", "Page 3", ":Chat_with_Books:"),
+        Page("pages/DocuBOT_Quiz_Mode.py.py", "Page 4", ":Chat_Quiz:"),
+        Page("pages/Admin_Controls.py", "Page 5", ":Admin_Controls:"),
+
+    ]
+)
 
 DB_FILE = "db.json"
 
