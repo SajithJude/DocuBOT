@@ -147,6 +147,17 @@ def main():
         st.session_state.pop('username', None)
         st.session_state.pop('user_type', None)
         st.write("Logged out successfully.")
+        show_pages(
+            [
+                Page("Login_new.py", "Login", "🏠"),
+                Page("Admin_Controls.py", "DocuBot", ":AI:"),
+                Page("DocuBot.py", "DocuBot", ":AI:"),
+                Section("My section", icon="🎈️"),
+                # Pages after a section will be indented
+                Page("DocuBOT_Quiz.py", "DocuBot Quiz", icon="💪"),
+                # Unless you explicitly say in_section=False
+                Page("Not in a section", in_section=False)
+            ])
 
 
 if __name__ == "__main__":
