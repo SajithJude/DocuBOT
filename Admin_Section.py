@@ -7,11 +7,11 @@ from st_pages import Page, Section, show_pages, add_page_title
 
 DB_FILE = "db.json"
 
-show_pages(
-    [
-        Page("Login_new.py", "Login", "🏠"),
-        Page("Admin_Section.py", "Login", "🏠")
-    ])
+# show_pages(
+#     [
+#         Page("Login_new.py", "Login", "🏠"),
+#         Page("Admin_Section.py", "Login", "🏠")
+#     ])
 
 
 class User:

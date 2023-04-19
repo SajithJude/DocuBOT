@@ -28,11 +28,11 @@ def set_style():
 
 DB_FILE = "db.json"
 
-show_pages(
-    [
-        Page("Login_new.py", "Login", "🏠"),
-        Page("Admin_Section.py", "Login", "🏠")
-    ])
+# show_pages(
+#     [
+#         Page("Login_new.py", "Login", "🏠"),
+#         Page("Admin_Section.py", "Login", "🏠")
+#     ])
 
 
 class User:
@@ -92,17 +92,17 @@ def main():
                     st.session_state['user_type'] = user.user_type
                     st.write(
                         f"Logged in as {user.username} ({user.user_type}).")
-                    # show_pages(
-                    #     [
-                    #         Page("Login_new.py", "Login", "🏠"),
-                    #         Page("DocuBot.py", "Page 2", ":books:"),
-                    #         Section("My section", icon="🎈️"),
-                    #         # Pages after a section will be indented
-                    #         Page("DocuBOT_Quiz.py", "DocuBot Quiz", icon="💪"),
-                    #         # Unless you explicitly say in_section=False
-                    #         Page("Not in a section", in_section=False)
-                    #     ]
-                    # )
+                    show_pages(
+                        [
+                            Page("Login_new.py", "Login", "🏠"),
+                            Page("DocuBot.py", "Page 2", ":books:"),
+                            Section("My section", icon="🎈️"),
+                            # Pages after a section will be indented
+                            Page("DocuBOT_Quiz.py", "DocuBot Quiz", icon="💪"),
+                            # Unless you explicitly say in_section=False
+                            Page("Not in a section", in_section=False)
+                        ]
+                    )
                 else:
                     st.write("Invalid username or password.")
 
