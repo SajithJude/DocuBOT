@@ -28,14 +28,7 @@
       "user_type": "learner",
       "instructor": "instructor2",
       "assignments": [
-        {
-          "title": "Assignment 3",
-          "description": "Read chapters 1-3 of the book."
-        },
-        {
-          "title": "Assignment 4",
-          "description": "Prepare a presentation on a topic of your choice."
-        }
+      
       ]
     }
   ]
