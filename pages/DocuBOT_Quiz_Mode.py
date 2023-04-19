@@ -67,16 +67,16 @@ if "username" in st.session_state:
             st.session_state['current_question'] = 0
 
          
+        submit = st.button("next",key="submit")
 
         if st.session_state['current_question'] < len(questions):
             current_question = questions[st.session_state['current_question']]
             message(current_question['question'], is_user=False, key=str(st.session_state['current_question']))
             user_input = st.text_input("You: ","", key="input")
-            submit = st.button("next",key="submit")
 
             if user_input:
                 st.session_state['past'].append(user_input)
-                st.session_state['current_question'] += 1
+                # st.session_state['current_question'] += 1
                 if submit:
                     st.session_state['current_question'] += 1
 
