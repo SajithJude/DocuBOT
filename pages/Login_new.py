@@ -28,6 +28,11 @@ def set_style():
 
 DB_FILE = "db.json"
 
+show_pages(
+    [
+        Page("Login_new.py", "Login", "🏠")
+    ])
+
 
 class User:
     def __init__(self, username, password, user_type, instructor=None, assignments=None):
@@ -74,8 +79,8 @@ def main():
 
         with tab1:
             st.subheader("Login")
-            username = st.text_input("Username (Login)")
-            password = st.text_input("Password (Login)", type="password")
+            username = st.text_input("Username")
+            password = st.text_input("Password", type="password")
 
             if st.button("Login"):
                 user = [user for user in users if user.username ==
