@@ -14,7 +14,7 @@ show_pages(
         Page("Admin_Section.py", "Login", "🏠"),
         Page("pages/Instructor_Quiz_Config.py",  "Question_Generation"),
         Page("pages/DocuBOT.py",  "Chat_with_Books"),
-        Page("pages/DocuBOT_Quiz_Mode.py.py",  "Chat_Quiz"),
+        Page("pages/DocuBOT_Quiz_Mode.py",  "Chat_Quiz"),
         Page("pages/Admin_Controls.py",  "Admin_Controls"),
 
     ]
