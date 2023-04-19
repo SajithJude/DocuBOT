@@ -5,34 +5,28 @@ from pathlib import Path
 from st_pages import Page, Section, show_pages, add_page_title
 
 
-def set_style():
-    st.markdown(
-        f"""
-        <style>
-            .reportview-container .main .block-container{{
-                max-width: {1500}px;
-                padding-top: {5}rem;
-                padding-right: {2}rem;
-                padding-left: {2}rem;
-                padding-bottom: {10}rem;
-            }}
-            .reportview-container .main {{
-                color: {'#333333'};
-                background-color: {'#F5F5F5'};
-            }}
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+# def set_style():
+#     st.markdown(
+#         f"""
+#         <style>
+#             .reportview-container .main .block-container{{
+#                 max-width: {1500}px;
+#                 padding-top: {5}rem;
+#                 padding-right: {2}rem;
+#                 padding-left: {2}rem;
+#                 padding-bottom: {10}rem;
+#             }}
+#             .reportview-container .main {{
+#                 color: {'#333333'};
+#                 background-color: {'#F5F5F5'};
+#             }}
+#         </style>
+#         """,
+#         unsafe_allow_html=True,
+#     )
 
 
 DB_FILE = "db.json"
-
-# show_pages(
-#     [
-#         Page("Login_new.py", "Login", "🏠"),
-#         Page("Admin_Section.py", "Login", "🏠")
-#     ])
 
 
 class User:
@@ -69,7 +63,7 @@ def save_users(users: List[User]):
 
 
 def main():
-    set_style()
+    # set_style()
 
     users = load_users()
 
@@ -118,7 +112,7 @@ def main():
                                      "LogIn / LogOut", "🎈️"),
                                 Page("pages/DocuBot.py", "Page 2", ":books:"),
                                 Page("pages/DocuBot_Quiz_Mode.py",
-                                     "Instructor_Quiz_Config", "💪")
+                                     "DocuBot_Quiz_Mode", "💪")
                             ]
                         )
                 else:
@@ -165,14 +159,14 @@ def main():
         st.session_state.pop('username', None)
         st.session_state.pop('user_type', None)
         st.write("Logged out successfully.")
-        show_pages(
-            [
-                Page("Admin_Section.py", "Home", "🏠"),
-                Page("pages/Login_new.py", "Login / Signup", "🎈️"),
-                Page("pages/Admin_Controls.py", "Admin Control", "💪"),
-            ]
-        )
+        # show_pages(
+        #     [
+        #         Page("Admin_Section.py", "Home", "🏠"),
+        #         Page("pages/Login_new.py", "Login / Signup", "🎈️"),
+        #         Page("pages/Admin_Controls.py", "Admin Control", "💪"),
+        #     ]
+        # )
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
