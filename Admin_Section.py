@@ -59,7 +59,7 @@ def save_users(users: List[User]):
 
 
 def main():
-    set_style()
+    
 
     users = load_users()
 
