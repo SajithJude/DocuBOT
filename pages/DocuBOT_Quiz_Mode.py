@@ -61,7 +61,7 @@ if "username" in streamlit.session_state:
             streamlit.session_state['past'] = []
             
         if 'current_question' not in streamlit.session_state:
-            streamlit.session_state['current_question'] = 1
+            streamlit.session_state['current_question'] = 0
 
         def get_text():
             input_text = streamlit.text_input("You: ","", key="input")
@@ -74,7 +74,7 @@ if "username" in streamlit.session_state:
 
             if user_input:
                 streamlit.session_state['past'].append(user_input)
-                streamlit.session_state['current_question'] += 1
+                streamlit.session_state['current_question'] += 2
 
             streamlit.sidebar.header("Conversation History")
             for i, question in enumerate(questions):
