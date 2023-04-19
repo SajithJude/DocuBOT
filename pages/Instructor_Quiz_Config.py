@@ -82,7 +82,7 @@ def main():
         st.warning("Please log in as an instructor to assign responses.")
 
 if __name__ == "__main__":
-    if "username" in streamlit.session_state:
+    if "username" in st.session_state:
         user = [u for u in users if u.username == streamlit.session_state['username']][0]
         if user.user_type == "instructor":
 
