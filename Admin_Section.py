@@ -14,8 +14,8 @@ from st_pages import Page, show_pages, add_page_title, hide_pages
 show_pages(
     [
         Page("Admin_Section.py", "Home", "🏠"),
-        Page("pages/DocuBOT.py",  "Chat_with_Books"),
-        Page("pages/DocuBOT_Quiz_Mode.py",  "Chat_Quiz"),
+        Page("pages/DocuBOT.py",  "Chat_with_Books", ":books:"),
+        Page("pages/DocuBOT_Quiz_Mode.py",  "Chat_Quiz",":memo:"),
 
     ]
 )
