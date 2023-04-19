@@ -153,6 +153,9 @@ if __name__ == "__main__":
 
             main()
 
+    else:
+        st.info("Please Login or Register")
+
 
 
 
