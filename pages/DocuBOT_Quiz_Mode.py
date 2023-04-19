@@ -93,8 +93,8 @@ if "username" in st.session_state:
             
             # with open("responses.json", "w") as outfile:
             #     json.dump(responses, outfile)
-                user.assignments[st.session_state['current_question'] - 1]['responses'] = responses
-                save_users(users)
+            user.assignments = responses
+            save_users(users)
 
             message("Thank you for answering all the questions. Your responses have been saved.", is_user=False)
             st.sidebar.write("Thank you for answering all the questions. Your responses have been saved.")
