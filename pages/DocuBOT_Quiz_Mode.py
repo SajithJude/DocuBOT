@@ -106,7 +106,7 @@ if "username" in st.session_state:
             )
 
     if st.session_state['generated']:
-        for i in range(len(st.session_state['generated'])-1, -1, 1):
+        for i in range(len(st.session_state['generated'])1, 1, 1):
             message(st.session_state["generated"][i], key=str(i))
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
             st.sidebar.write("Bot: ", st.session_state["generated"][i])
