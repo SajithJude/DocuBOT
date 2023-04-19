@@ -77,7 +77,7 @@ if "username" in st.session_state:
             if submit:
                 st.session_state['past'].append(user_input)
                 st.session_state['current_question'] += 1
-                pass
+            pass
 
             st.sidebar.header("Conversation History")
             for i, question in enumerate(questions):
