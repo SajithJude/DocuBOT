@@ -10,6 +10,9 @@ from st_pages import Page, show_pages, add_page_title, hide_pages
 
 # Specify what pages should be shown in the sidebar, and what their titles and icons
 # should be
+favicon = "favicon.ac8d93a.69085235180674d80d902fdc4b848d0b (1).png"
+st.set_page_config(page_title="DocuBOT", page_icon=favicon)
+st.sidebar.image("Flipick_Logo-1 (1)-fotor-bg-remover-20230419132039.png")
 
 show_pages(
     [
