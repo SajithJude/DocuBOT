@@ -80,6 +80,11 @@ if "username" in st.session_state:
                 if i < st.session_state['current_question']:
                     st.sidebar.write(question['question'])
                     st.sidebar.write("You: " + st.session_state['past'][i])
+                    
+    if st.session_state['generated']:
+        for i in range(len(st.session_state['generated'])-1, -1, -1):
+            message(st.session_state["generated"][i], key=str(i))
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
 
         else:
             responses = []
