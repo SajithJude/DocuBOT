@@ -6,14 +6,14 @@ from st_pages import Page, show_pages, add_page_title, hide_pages
 
 
 # Optional -- adds the title and icon to the current page
-add_page_title()
+# add_page_title()
 
 # Specify what pages should be shown in the sidebar, and what their titles and icons
 # should be
 
 show_pages(
     [
-        Page("Admin_Section.py", "Login", "🏠"),
+        Page("Admin_Section.py", "Home", "🏠"),
         Page("pages/DocuBOT.py",  "Chat_with_Books"),
         Page("pages/DocuBOT_Quiz_Mode.py",  "Chat_Quiz"),
 
@@ -141,7 +141,6 @@ if __name__ == "__main__":
             show_pages([
             Page("pages/Admin_Controls.py",  "Admin_Controls"),
             Page("pages/Instructor_Quiz_Config.py",  "Question_Generation")
-
             ])
 
        
