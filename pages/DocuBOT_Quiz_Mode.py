@@ -82,6 +82,12 @@ if "username" in st.session_state:
                     st.sidebar.write(question['question'])
                     st.sidebar.write("You: " + st.session_state['past'][i])
 
+        if st.session_state['generated']:
+            for i in range(len(st.session_state['generated'])-1, -1, -1):
+                message(st.session_state["generated"][i], key=str(i))
+                message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+                st.sidebar.write("Bot: ", st.session_state["generated"][i])
+
     
         else:
             responses = []
@@ -105,11 +111,6 @@ if "username" in st.session_state:
                 mime="application/json"
             )
 
-    if st.session_state['generated']:
-        for i in range(len(st.session_state['generated'])-1, -1, -1):
-            message(st.session_state["generated"][i], key=str(i))
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-            st.sidebar.write("Bot: ", st.session_state["generated"][i])
-
+    
 else:
     st.info("Please Login or Register")
