@@ -107,7 +107,7 @@ def main():
                 instructor_usernames = [
                     instructor.username for instructor in instructors]
                 selected_instructor = st.selectbox(
-                    "Select an Instructor", instructor_usernames)
+                    "Assign an Instructor", instructor_usernames)
                 username_reg = st.text_input("Username (Learner)")
                 password_reg = st.text_input(
                     "Password (Learner)", type="password")
