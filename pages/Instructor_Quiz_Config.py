@@ -83,6 +83,7 @@ def main():
 
 if __name__ == "__main__":
     users = load_users()
+    main()
 
     if "username" in st.session_state:
         user = [u for u in users if u.username == st.session_state['username']][0]
@@ -152,7 +153,6 @@ if __name__ == "__main__":
             except AttributeError:
                 st.warning("Type a topic and generate some questions to refine them")
 
-        main()
 
     else:
         st.info("Please Login or Register")
