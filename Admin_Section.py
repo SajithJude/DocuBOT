@@ -19,7 +19,7 @@ show_pages(
 
     ]
 )
-hide_pages(["Admin_Controls", "Question_Generation"])
+# hide_pages(["Admin_Controls", "Question_Generation"])
 
 DB_FILE = "db.json"
 
