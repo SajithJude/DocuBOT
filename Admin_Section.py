@@ -12,10 +12,10 @@ add_page_title()
 show_pages(
     [
         Page("Admin_Section.py", "Login", "🏠"),
-        Page("pages/Instructor_Quiz_Config.py", "Page 2", ":Question_Generation:"),
-        Page("pages/DocuBOT.py", "Page 3", ":Chat_with_Books:"),
-        Page("pages/DocuBOT_Quiz_Mode.py.py", "Page 4", ":Chat_Quiz:"),
-        Page("pages/Admin_Controls.py", "Page 5", ":Admin_Controls:"),
+        Page("pages/Instructor_Quiz_Config.py",  ":Question_Generation:"),
+        Page("pages/DocuBOT.py",  ":Chat_with_Books:"),
+        Page("pages/DocuBOT_Quiz_Mode.py.py",  ":Chat_Quiz:"),
+        Page("pages/Admin_Controls.py",  ":Admin_Controls:"),
 
     ]
 )
