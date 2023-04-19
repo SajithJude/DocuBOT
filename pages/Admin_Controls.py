@@ -12,10 +12,18 @@ loader = PDFReader()
 
 # Define the data directory path
 DATA_DIR = "data"
-
+DB_FILE= "db.json"
 # Create the data directory if it doesn't exist
 if not os.path.exists(DATA_DIR):
     os.mkdir(DATA_DIR)
+
+def load_users_dicts() -> List[dict]:
+    if Path(DB_FILE).is_file():
+        with open(DB_FILE, "r") as f:
+            users_data = json.load(f)
+        return users_data
+    else:
+        return []
 
 # Define a function to display the contents of a PDF file
 def display_pdf(DATA_DIR, pdf_file):
@@ -100,6 +108,11 @@ def main():
         button_type = "Delete" if delete_status else "Gone"
         button_phold = col3.empty()  # create a placeholder
         do_action = button_phold.button(button_type, key=i, on_click=delete_file, args=(DATA_DIR, Name))
+
+
+    users_dicts = load_users_dicts()
+    st.table(users_dicts)
+
     
 if __name__ == "__main__":
     password = st.text_input("Enter password",type="password")
