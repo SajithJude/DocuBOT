@@ -46,8 +46,8 @@ def main():
     users = load_users()
 
     if "username" not in st.session_state:
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
+        username = st.text_input("Username", value="learner1")
+        password = st.text_input("Password",value="password3" type="password")
 
         if st.button("Login"):
             user = [user for user in users if user.username == username and user.password == password]
