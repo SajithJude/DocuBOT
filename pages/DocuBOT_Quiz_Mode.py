@@ -81,7 +81,12 @@ if "username" in st.session_state:
                 st.session_state['past'].append(user_input)
                 st.session_state['current_question'] += 1
                     
-                    
+            if st.session_state['generated']:
+                for i in range(len(st.session_state['generated'])-1, -1, -1):
+                    message(st.session_state["generated"][i], key=str(i))
+                    message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+                    st.sidebar.write("Bot: ", st.session_state["generated"][i])
+
 
             st.sidebar.header("Conversation History")
             for i, question in enumerate(questions):
@@ -114,11 +119,6 @@ if "username" in st.session_state:
                 mime="application/json"
             )
 
-    if st.session_state['generated']:
-        for i in range(len(st.session_state['generated'])-1, -1, -1):
-            message(st.session_state["generated"][i], key=str(i))
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-            st.sidebar.write("Bot: ", st.session_state["generated"][i])
-
+    
 else:
     st.info("Please Login or Register")
