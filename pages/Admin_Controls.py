@@ -5,6 +5,8 @@ from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader
 import openai
 from pathlib import Path
 from llama_index import download_loader
+from typing import List
+
 
 openai.api_key = os.getenv("API_KEY")
 PDFReader = download_loader("PDFReader")
