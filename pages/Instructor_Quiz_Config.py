@@ -48,6 +48,7 @@ def save_users(users: List[User]):
 def main():
     st.title("Assignment Submission")
 
+    users = load_users()
 
     # Check if the user is logged in and is an instructor
     if "username" in st.session_state and st.session_state["user_type"] == "instructor":
