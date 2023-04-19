@@ -10,16 +10,16 @@ add_page_title()
 
 # Specify what pages should be shown in the sidebar, and what their titles and icons
 # should be
+
 show_pages(
     [
         Page("Admin_Section.py", "Login", "🏠"),
-        Page("pages/Instructor_Quiz_Config.py",  "Question_Generation"),
         Page("pages/DocuBOT.py",  "Chat_with_Books"),
         Page("pages/DocuBOT_Quiz_Mode.py",  "Chat_Quiz"),
-        Page("pages/Admin_Controls.py",  "Admin_Controls"),
 
     ]
 )
+hide_pages(["Admin_Controls", "Question_Generation"])
 
 DB_FILE = "db.json"
 
@@ -137,7 +137,11 @@ if __name__ == "__main__":
     if "username" in st.session_state:
         users = load_users()
         user = [u for u in users if u.username == st.session_state['username']][0]
-        if user.user_type != "instructor":
-            hide_pages(["Admin_Controls", "Question_Generation"])
+        if user.user_type == "instructor":
+            show_pages([
+            Page("pages/Admin_Controls.py",  "Admin_Controls"),
+            Page("pages/Instructor_Quiz_Config.py",  "Question_Generation")
+
+            ])
 
        
