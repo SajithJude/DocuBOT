@@ -132,6 +132,7 @@ def main():
 if __name__ == "__main__":
     main()
     if "username" in st.session_state:
+        users = load_users()
         user = [u for u in users if u.username == st.session_state['username']][0]
         if user.user_type == "instructor":
             hide_pages([])
