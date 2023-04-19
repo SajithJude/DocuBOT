@@ -152,7 +152,7 @@ if __name__ == "__main__":
             except AttributeError:
                 st.warning("Type a topic and generate some questions to refine them")
 
-            main()
+        main()
 
     else:
         st.info("Please Login or Register")
