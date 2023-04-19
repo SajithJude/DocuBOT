@@ -2,7 +2,7 @@ import streamlit as st
 import json
 from typing import List
 from pathlib import Path
-from st_pages import Page, show_pages, add_page_title
+from st_pages import Page, show_pages, add_page_title, hide_pages
 
 # Optional -- adds the title and icon to the current page
 add_page_title()
@@ -131,4 +131,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+    if "username" in st.session_state:
+        user = [u for u in users if u.username == st.session_state['username']][0]
+        if user.user_type == "instructor":
+            hide_pages([])
+        else:
+            hide_pages(["Admin_Controls", "Question_Generation"])
 
