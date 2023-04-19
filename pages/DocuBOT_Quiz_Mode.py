@@ -72,12 +72,15 @@ if "username" in st.session_state:
             current_question = questions[st.session_state['current_question']]
             message(current_question['question'], is_user=False, key=str(st.session_state['current_question']))
             user_input = st.text_input("You: ","", key="input")
-            submit = st.button("Submit",key="submit")
+            submit = st.button("next",key="submit")
 
-            if submit:
+            if user_input:
                 st.session_state['past'].append(user_input)
                 st.session_state['current_question'] += 1
-            pass
+                if submit:
+                    st.session_state['current_question'] += 1
+
+            
 
             st.sidebar.header("Conversation History")
             for i, question in enumerate(questions):
