@@ -1,4 +1,4 @@
-import streamlit as streamlit
+import streamlit as st
 from streamlit_chat import message
 import json
 from typing import List
