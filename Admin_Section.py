@@ -131,7 +131,7 @@ def main():
         st.write("Logged out successfully.")
 
 if __name__ == "__main__":
-    hide_pages(["Admin_Controls", "Question_Generation"])
+    # hide_pages(["Admin_Controls", "Question_Generation"])
 
     main()
     if "username" in st.session_state:
