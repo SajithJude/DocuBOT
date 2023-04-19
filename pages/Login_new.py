@@ -2,6 +2,7 @@ import streamlit as st
 import json
 from typing import List
 from pathlib import Path
+from st_pages import Page, Section, show_pages, add_page_title
 
 
 def set_style():
@@ -85,6 +86,17 @@ def main():
                     st.session_state['user_type'] = user.user_type
                     st.write(
                         f"Logged in as {user.username} ({user.user_type}).")
+                    show_pages(
+                        [
+                            Page("Login_new.py", "Login", "🏠"),
+                            Page("DocuBot.py", "Page 2", ":books:"),
+                            Section("My section", icon="🎈️"),
+                            # Pages after a section will be indented
+                            Page("DocuBOT_Quiz.py", "DocuBot Quiz", icon="💪"),
+                            # Unless you explicitly say in_section=False
+                            Page("Not in a section", in_section=False)
+                        ]
+                    )
                 else:
                     st.write("Invalid username or password.")
 
