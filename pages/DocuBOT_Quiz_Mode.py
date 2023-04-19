@@ -74,7 +74,7 @@ if "username" in st.session_state:
 
             if user_input:
                 st.session_state['past'].append(user_input)
-                st.session_state['current_question'] += 2
+                st.session_state['current_question'] += 1
 
             st.sidebar.header("Conversation History")
             for i, question in enumerate(questions):
