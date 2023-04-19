@@ -4,6 +4,8 @@ from typing import List
 from pathlib import Path
 from st_pages import Page, show_pages, add_page_title, hide_pages
 
+
+hide_pages(["Admin_Controls", "Question_Generation"])
 # Optional -- adds the title and icon to the current page
 add_page_title()
 
