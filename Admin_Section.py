@@ -7,11 +7,18 @@ from st_pages import Page, Section, show_pages, add_page_title
 
 DB_FILE = "db.json"
 
-# show_pages(
-#     [
-#         Page("Login_new.py", "Login", "🏠"),
-#         Page("Admin_Section.py", "Login", "🏠")
-#     ])
+show_pages(
+    [
+        Page("Admin_Section.py", "Home", "🏠"),
+        Page("Login_new.py", "Login", "🏠"),
+        Page("DocuBot.py", "Page 2", ":books:"),
+        Section("My section", icon="🎈️"),
+        # Pages after a section will be indented
+        Page("DocuBOT_Quiz.py", "DocuBot Quiz", icon="💪"),
+        # Unless you explicitly say in_section=False
+        Page("Not in a section", in_section=False)
+    ]
+)
 
 
 class User:
