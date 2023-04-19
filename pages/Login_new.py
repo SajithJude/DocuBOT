@@ -30,7 +30,8 @@ DB_FILE = "db.json"
 
 show_pages(
     [
-        Page("Login_new.py", "Login", "🏠")
+        Page("Login_new.py", "Login", "🏠"),
+        Page("Admin_Section.py", "Login", "🏠")
     ])
 
 
