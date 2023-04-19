@@ -18,10 +18,27 @@
       "password": "password3",
       "user_type": "learner",
       "instructor": "instructor1",
-      "assignments": [
-        
-       
-      ]
+      "assignments":  
+      [ {
+         "question": "What is the definition of a topic?",
+         "answer": "A topic is a subject or issue that forms the basis of discussion or analysis. It can refer to an area of study, an issue in public policy, or a problem in an individual's life.",
+         "Question": "What is the definition of a topic?"
+       },
+
+       {
+         
+           "question": "What are some examples of topics?",
+           "answer": "Examples of topics include climate change, poverty, education, technology, health care, immigration, and international relations.",
+           "Question": "What are some examples of topics?"
+         
+       },
+
+       {
+         "question": "How can topics be used in research?",
+         "answer": "Topics can be used to narrow down the scope of research to a specific area. They can also be used to identify relevant sources of information and to develop research questions and hypotheses.",
+         "Question": "How can topics be used in research?"
+       }
+     ] 
     },
     {
       "username": "learner2",
