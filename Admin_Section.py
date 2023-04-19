@@ -92,8 +92,9 @@ def main():
         st.write(f"User {username} registered successfully as a {user_type}.")
  
     if st.button("Logout"):
-        st.session_state.pop('username', None)
-        st.session_state.pop('user_type', None)
+        keys_to_remove = list(st.session_state.keys())  # Get a list of all session state keys
+        for key in keys_to_remove:
+            st.session_state.pop(key, None)  # Remove each key from the session state
         st.write("Logged out successfully.")
 
 if __name__ == "__main__":
