@@ -111,3 +111,6 @@ if "username" in streamlit.session_state:
             message(streamlit.session_state["generated"][i], key=str(i))
             message(streamlit.session_state['past'][i], is_user=True, key=str(i) + '_user')
             streamlit.sidebar.write("Bot: ", streamlit.session_state["generated"][i])
+
+    else:
+        st.info("Please Login or Register")
