@@ -58,7 +58,10 @@ def main():
         # uploaded_file = st.file_uploader("Upload the responses JSON file here")
         
         # if uploaded_file is not None:
-        responses = st.session_state.json_output
+        try:
+            responses = st.session_state.json_output
+        except AttributeError:
+            st.info("generate questions to get started")
 
         # Choose a student to assign the responses
         students = [u for u in users if u.user_type == "learner" and u.instructor == instructor.username]

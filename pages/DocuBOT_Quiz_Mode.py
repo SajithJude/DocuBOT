@@ -61,7 +61,7 @@ if "username" in streamlit.session_state:
             streamlit.session_state['past'] = []
             
         if 'current_question' not in streamlit.session_state:
-            streamlit.session_state['current_question'] = 0
+            streamlit.session_state['current_question'] = 1
 
         def get_text():
             input_text = streamlit.text_input("You: ","", key="input")
