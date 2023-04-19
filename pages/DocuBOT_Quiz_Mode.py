@@ -69,7 +69,7 @@ if "username" in st.session_state:
          
         # submit = st.button("next",key="submit")
 
-       if st.session_state['current_question'] < len(questions):
+        if st.session_state['current_question'] < len(questions):
             current_question = questions[st.session_state['current_question']]
             message(current_question['question'], is_user=False, key=str(st.session_state['current_question']))
 
