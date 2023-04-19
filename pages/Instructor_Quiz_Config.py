@@ -84,7 +84,7 @@ if __name__ == "__main__":
     users = load_users()
 
     if "username" in st.session_state:
-        user = [u for u in users if u.username == streamlit.session_state['username']][0]
+        user = [u for u in users if u.username == st.session_state['username']][0]
         if user.user_type == "instructor":
 
 
