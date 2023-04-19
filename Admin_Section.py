@@ -5,7 +5,6 @@ from pathlib import Path
 from st_pages import Page, show_pages, add_page_title, hide_pages
 
 
-hide_pages(["Admin_Controls", "Question_Generation"])
 # Optional -- adds the title and icon to the current page
 add_page_title()
 
@@ -132,12 +131,13 @@ def main():
         st.write("Logged out successfully.")
 
 if __name__ == "__main__":
+    hide_pages(["Admin_Controls", "Question_Generation"])
+
     main()
     if "username" in st.session_state:
         users = load_users()
         user = [u for u in users if u.username == st.session_state['username']][0]
-        if user.user_type == "instructor":
-            hide_pages([])
-        else:
+        if user.user_type == "learner":
             hide_pages(["Admin_Controls", "Question_Generation"])
 
+       
