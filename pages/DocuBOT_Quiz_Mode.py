@@ -40,77 +40,77 @@ def save_users(users: List[User]):
         json.dump(users_data, f)
 
 
-streamlit.set_page_config(
+st.set_page_config(
     page_title="DocuBOT QuizMode",
     page_icon=":robot:"
 )
 
-streamlit.header("DocuBOT QuizMode")
+st.header("DocuBOT QuizMode")
 
 users = load_users()
 
-if "username" in streamlit.session_state:
-    user = [u for u in users if u.username == streamlit.session_state['username']][0]
+if "username" in st.session_state:
+    user = [u for u in users if u.username == st.session_state['username']][0]
     if user.user_type == "learner":
         questions = user.assignments
-        # streamlit.write(questions)
-        if 'generated' not in streamlit.session_state:
-            streamlit.session_state['generated'] = []
+        # st.write(questions)
+        if 'generated' not in st.session_state:
+            st.session_state['generated'] = []
 
-        if 'past' not in streamlit.session_state:
-            streamlit.session_state['past'] = []
+        if 'past' not in st.session_state:
+            st.session_state['past'] = []
             
-        if 'current_question' not in streamlit.session_state:
-            streamlit.session_state['current_question'] = 0
+        if 'current_question' not in st.session_state:
+            st.session_state['current_question'] = 0
 
         def get_text():
-            input_text = streamlit.text_input("You: ","", key="input")
+            input_text = st.text_input("You: ","", key="input")
             return input_text 
 
-        if streamlit.session_state['current_question'] < len(questions):
-            current_question = questions[streamlit.session_state['current_question']]
-            message(current_question['question'], is_user=False, key=str(streamlit.session_state['current_question']))
+        if st.session_state['current_question'] < len(questions):
+            current_question = questions[st.session_state['current_question']]
+            message(current_question['question'], is_user=False, key=str(st.session_state['current_question']))
             user_input = get_text()
 
             if user_input:
-                streamlit.session_state['past'].append(user_input)
-                streamlit.session_state['current_question'] += 2
+                st.session_state['past'].append(user_input)
+                st.session_state['current_question'] += 2
 
-            streamlit.sidebar.header("Conversation History")
+            st.sidebar.header("Conversation History")
             for i, question in enumerate(questions):
-                if i < streamlit.session_state['current_question']:
-                    streamlit.sidebar.write(question['question'])
-                    streamlit.sidebar.write("You: " + streamlit.session_state['past'][i])
+                if i < st.session_state['current_question']:
+                    st.sidebar.write(question['question'])
+                    st.sidebar.write("You: " + st.session_state['past'][i])
 
         else:
             responses = []
             for i, question in enumerate(questions):
                 response = {
                     "question": question['question'],
-                    "response": streamlit.session_state['past'][i]
+                    "response": st.session_state['past'][i]
                 }
                 responses.append(response)
             
             # with open("responses.json", "w") as outfile:
             #     json.dump(responses, outfile)
-                user.assignments[streamlit.session_state['current_question'] - 1]['responses'] = responses
+                user.assignments[st.session_state['current_question'] - 1]['responses'] = responses
                 save_users(users)
 
             message("Thank you for answering all the questions. Your responses have been saved.", is_user=False)
-            streamlit.sidebar.write("Thank you for answering all the questions. Your responses have been saved.")
+            st.sidebar.write("Thank you for answering all the questions. Your responses have been saved.")
 
-            streamlit.sidebar.download_button(
+            st.sidebar.download_button(
                 label="Download Responses",
                 data=json.dumps(responses),
                 file_name="responses.json",
                 mime="application/json"
             )
 
-    if streamlit.session_state['generated']:
-        for i in range(len(streamlit.session_state['generated'])-1, -1, -1):
-            message(streamlit.session_state["generated"][i], key=str(i))
-            message(streamlit.session_state['past'][i], is_user=True, key=str(i) + '_user')
-            streamlit.sidebar.write("Bot: ", streamlit.session_state["generated"][i])
+    if st.session_state['generated']:
+        for i in range(len(st.session_state['generated'])-1, -1, -1):
+            message(st.session_state["generated"][i], key=str(i))
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+            st.sidebar.write("Bot: ", st.session_state["generated"][i])
 
     else:
         st.info("Please Login or Register")
