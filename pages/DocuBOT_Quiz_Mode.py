@@ -83,7 +83,7 @@ if "username" in st.session_state:
                     st.sidebar.write("You: " + st.session_state['past'][i])
 
 
-                else:
+        else:
             responses = []
             for i, question in enumerate(questions):
                 response = {
