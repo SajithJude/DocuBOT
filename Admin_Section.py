@@ -113,6 +113,13 @@ def main():
                     save_users(users)
                     st.success(
                         f"User {username_reg} registered successfully as a {user_type}.")
+    if st.sidebar.button("Logout"):
+        # Get a list of all session state keys
+        keys_to_remove = list(st.session_state.keys())
+        for key in keys_to_remove:
+            # Remove each key from the session state
+            st.session_state.pop(key, None)
+        st.write("Logged out successfully.")
 
 
 if __name__ == "__main__":
@@ -124,8 +131,8 @@ if __name__ == "__main__":
 
         if user.user_type == "instructor":
             show_pages([
-                # Page("Admin_Section.py", "Home", "🏠"),
-                Page("pages/My_Profile.py", "My Profile", "🏠"),
+                Page("Admin_Section.py", "Home", "🏠"),
+                # Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("pages/Instructor_Quiz_Config.py",
                      "Question_Generation", "🎈️"),
                 Page("pages/DocuBOT.py",  "DocuBOT", "🎈️")
@@ -133,16 +140,16 @@ if __name__ == "__main__":
 
         elif user.user_type == "learner":
             show_pages([
-                # Page("Admin_Section.py", "Home", "🏠"),
-                Page("pages/My_Profile.py", "My Profile", "🏠"),
+                Page("Admin_Section.py", "Home", "🏠"),
+                # Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
                 Page("pages/DocuBOT.py",  "DocuBOT", "🎈️")
             ])
 
         elif user.user_type == "superadmin":
             show_pages([
-                # Page("Admin_Section.py", "Home", "🏠"),
-                Page("pages/My_Profile.py", "My Profile", "🏠"),
+                Page("Admin_Section.py", "Home", "🏠"),
+                # Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("pages/Register_Users_super.py",
                      "Register New Users", "💪"),
                 Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
@@ -151,7 +158,8 @@ if __name__ == "__main__":
             ])
         elif user.user_type == "admin":
             show_pages([
-                Page("pages/My_Profile.py", "My Profile", "🏠"),
+                # Page("pages/My_Profile.py", "My Profile", "🏠"),
+                Page("Admin_Section.py", "Home", "🏠"),
                 Page("pages/Register_Users_admin.py",
                      "Register New Users", "💪"),
                 Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
