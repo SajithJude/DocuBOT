@@ -167,7 +167,7 @@ if __name__ == "__main__":
                 Page("pages/DocuBOT.py",  "DocuBOT", "🎈️"),
                 Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
             ])
-        # else:
-        #     show_pages([
-        #         Page("Admin_Section.py", "Home", "🏠")
-        #     ])
+        else:
+            show_pages([
+                Page("Admin_Section.py", "Home", "🏠")
+            ])
