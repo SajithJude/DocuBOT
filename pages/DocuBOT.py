@@ -76,7 +76,7 @@ for chat in st.session_state.history:
         st.sidebar.caption("Question: " + chat["message"])
     else:
         with st.sidebar.expander("Bot Answer", expanded=False):
-            st.write(chat["message"], language=None)
+            st.write(chat["message"])
 
 
 def st_message(message, is_user):
