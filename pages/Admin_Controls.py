@@ -1,10 +1,10 @@
 import os
 import streamlit as st
 import PyPDF2
-from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader
+from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader, download_loader
 import openai
 from pathlib import Path
-from llama_index import download_loader
+# from llama_index import download_loader
 from typing import List
 import json
 
@@ -83,7 +83,8 @@ def main():
         pdf_filename = uploaded_file.name
 
         # Load the documents from the data directory
-        documents = SimpleDirectoryReader(DATA_DIR).load_data()
+        documents = loader.load_data(
+            file=Path(f"{os.path.join(DATA_DIR, uploaded_file.name)}"))
 
         # Create the index from the documents
         index = GPTSimpleVectorIndex.from_documents(documents)
