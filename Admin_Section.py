@@ -144,50 +144,48 @@ if __name__ == "__main__":
         if user.user_type == "instructor":
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠"),
-                # Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("pages/Instructor_Quiz_Config.py",
-                     "Question_Generation", "🎈️"),
-                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️")
+                     "Question_Generation", " 📕"),
+                Page("pages/DocuBOT.py",  "DocuBOT", ":books:"),
+                Page("pages/instructor_control.py",
+                     "Instructor Controls", "🧑🏻‍🏫")
             ])
 
         elif user.user_type == "learner":
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠"),
-                # Page("pages/My_Profile.py", "My Profile", "🏠"),
-                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
-                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️")
+                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "📝"),
+                Page("pages/DocuBOT.py",  "DocuBOT", ":books:")
             ])
 
         elif user.user_type == "superadmin":
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠"),
-                # Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("pages/Register_Users_super.py",
-                     "Register New Users", "💪"),
-                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
-                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️"),
-                Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
+                     "Register New Users"),
+                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "📝"),
+                Page("pages/DocuBOT.py",  "DocuBOT", ":books:"),
+                Page("pages/Admin_Controls.py",  "Admin_Controls")
             ])
         elif user.user_type == "admin":
             show_pages([
-                # Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("Admin_Section.py", "Home", "🏠"),
                 Page("pages/Register_Users_admin.py",
-                     "Register New Users", "💪"),
-                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
-                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️"),
-                Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
+                     "Register New Users"),
+                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "📝"),
+                Page("pages/DocuBOT.py",  "DocuBOT", ":books:"),
+                Page("pages/Admin_Controls.py",  "Admin_Controls")
             ])
         else:
 
             hide_pages([
 
-                Page("pages/My_Profile.py", "My Profile", "🏠"),
+                Page("pages/My_Profile.py", "My Profile"),
                 Page("pages/Register_Users_super.py",
-                     "Register New Users", "💪"),
-                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
-                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️"),
-                Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
+                     "Register New Users"),
+                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode"),
+                Page("pages/DocuBOT.py",  "DocuBOT", ":books:"),
+                Page("pages/Admin_Controls.py",  "Admin_Controls")
             ])
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠")
