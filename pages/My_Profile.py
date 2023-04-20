@@ -32,6 +32,6 @@ if st.button("Logout"):
     st.write("Logged out successfully.")
 
     show_pages([
-        Page("../Admin_Section.py", "Home", "🏠")
+        Page("Admin_Section.py", "Home", "🏠")
     ])
     # switch_page('Admin_Section')
