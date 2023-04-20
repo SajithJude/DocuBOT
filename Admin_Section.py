@@ -114,14 +114,6 @@ def main():
                     st.success(
                         f"User {username_reg} registered successfully as a {user_type}.")
 
-    if st.sidebar.button("Logout"):
-        # Get a list of all session state keys
-        keys_to_remove = list(st.session_state.keys())
-        for key in keys_to_remove:
-            # Remove each key from the session state
-            st.session_state.pop(key, None)
-        st.write("Logged out successfully.")
-
 
 if __name__ == "__main__":
     main()
