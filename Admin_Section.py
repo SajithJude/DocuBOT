@@ -95,34 +95,30 @@ def main():
                     st.write(
                         f"Logged in as {user.username} ({user.user_type}).")
 
-                    # if user_type == 'instructor':
-                    #     show_pages(
-                    #         [
-                    #             Page("Admin_Section.py", "Home", "🏠"),
-                    #             Page("pages/Login_new.py",
-                    #                  "LogIn / LogOut", "🎈️"),
-                    #             Page("pages/DocuBot.py", "Page 2", ":books:"),
-                    #             Page("pages/Instructor_Quiz_Config.py",
-                    #                  "Instructor_Quiz_Config", "💪")
-                    #             # Section("My section", icon="🎈️"),
-                    #             # Pages after a section will be indented
-                    #             # Page("DocuBOT_Quiz.py",
-                    #             #  "DocuBot Quiz", icon="💪"),
-                    #             # Unless you explicitly say in_section=False
-                    #             # Page("Not in a section", in_section=False)
-                    #         ]
-                    #     )
-                    # else:
-                    #     show_pages(
-                    #         [
-                    #             Page("Admin_Section.py", "Home", "🏠"),
-                    #             Page("pages/Login_new.py",
-                    #                  "LogIn / LogOut", "🎈️"),
-                    #             Page("pages/DocuBot.py", "Page 2", ":books:"),
-                    #             Page("pages/DocuBot_Quiz_Mode.py",
-                    #                  "DocuBot_Quiz_Mode", "💪")
-                    #         ]
-                    #     )
+                    if user_type == 'instructor':
+                        show_pages(
+                            [
+                                Page("Admin_Section.py", "Home", "🏠"),
+                                Page("pages/Instructor_Quiz_Config.py",
+                                     "Instructor_Quiz_Config", "💪"),
+                                Page("pages/DocuBOT.py", "DocuBOT", "🎈️")
+                                # Section("My section", icon="🎈️"),
+                                # Pages after a section will be indented
+                                # Page("DocuBOT_Quiz.py",
+                                #  "DocuBot Quiz", icon="💪"),
+                                # Unless you explicitly say in_section=False
+                                # Page("Not in a section", in_section=False)
+                            ]
+                        )
+                    else:
+                        show_pages(
+                            [
+                                Page("Admin_Section.py", "Home", "🏠"),
+                                Page("pages/DocuBot_Quiz_Mode.py",
+                                     "DocuBot_Quiz_Mode", "💪"),
+                                Page("pages/DocuBot.py", "Page 2", "🎈️"),
+                            ]
+                        )
                 else:
                     st.write("Invalid username or password.")
 
