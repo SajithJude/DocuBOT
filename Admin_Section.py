@@ -13,6 +13,17 @@ show_pages(
     ]
 )
 
+if st.session_state.get("show_homepage", False):
+    # Display the homepage
+    show_pages(
+        [
+            Page("Admin_Section.py", "Home", "🏠"),
+
+        ])
+else:
+    # Display other pages or sections
+    ...
+
 
 def set_style():
     st.markdown(
