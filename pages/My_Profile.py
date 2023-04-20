@@ -3,6 +3,7 @@ import json
 from typing import List
 from pathlib import Path
 from st_pages import Page, Section, show_pages, add_page_title
+# from streamlit_extras.switch_page_button import switch_page
 
 st.title("My Profile")
 
@@ -22,7 +23,7 @@ st.title("My Profile")
 
 st.write("Welcome to DocuBOT")
 
-if st.button("Logout", page="home"):
+if st.button("Logout"):
     # Get a list of all session state keys
     keys_to_remove = list(st.session_state.keys())
     for key in keys_to_remove:
@@ -33,3 +34,4 @@ if st.button("Logout", page="home"):
     # show_pages([
     #     Page("../Admin_Section.py", "Home", "🏠")
     # ])
+    # switch_page('Admin_Section')

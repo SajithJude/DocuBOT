@@ -8,3 +8,4 @@ firebase_admin
 pycryptodome
 pyrebase
 st_pages>=0.4.0
+streamlit_extras.switch_page_button
