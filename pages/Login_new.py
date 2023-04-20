@@ -5,25 +5,25 @@ from pathlib import Path
 from st_pages import Page, Section, show_pages, add_page_title
 
 
-# def set_style():
-#     st.markdown(
-#         f"""
-#         <style>
-#             .reportview-container .main .block-container{{
-#                 max-width: {1500}px;
-#                 padding-top: {5}rem;
-#                 padding-right: {2}rem;
-#                 padding-left: {2}rem;
-#                 padding-bottom: {10}rem;
-#             }}
-#             .reportview-container .main {{
-#                 color: {'#333333'};
-#                 background-color: {'#F5F5F5'};
-#             }}
-#         </style>
-#         """,
-#         unsafe_allow_html=True,
-#     )
+def set_style():
+    st.markdown(
+        f"""
+        <style>
+            .reportview-container .main .block-container{{
+                max-width: {1500}px;
+                padding-top: {5}rem;
+                padding-right: {2}rem;
+                padding-left: {2}rem;
+                padding-bottom: {10}rem;
+            }}
+            .reportview-container .main {{
+                color: {'#333333'};
+                background-color: {'#F5F5F5'};
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 DB_FILE = "db.json"

@@ -1,10 +1,9 @@
-import streamlit as st 
+import streamlit as st
 import openai
 import os
 import json
 import base64
 from typing import List
-# import streamlit as st
 from pathlib import Path
 import json
 
@@ -44,7 +43,6 @@ def save_users(users: List[User]):
         json.dump(users_data, f)
 
 
-
 def main():
     st.title("Assignment Submission")
 
@@ -52,18 +50,21 @@ def main():
 
     # Check if the user is logged in and is an instructor
     if "username" in st.session_state and st.session_state["user_type"] == "instructor":
-        instructor = [u for u in users if u.username == st.session_state['username']][0]
-        
+        instructor = [u for u in users if u.username ==
+                      st.session_state['username']][0]
+
         # Upload the JSON file with responses
         # uploaded_file = st.file_uploader("Upload the responses JSON file here")
-        
+
         # if uploaded_file is not None:
         responses = st.session_state.json_output
 
         # Choose a student to assign the responses
-        students = [u for u in users if u.user_type == "learner" and u.instructor == instructor.username]
+        students = [u for u in users if u.user_type ==
+                    "learner" and u.instructor == instructor.username]
         student_usernames = [s.username for s in students]
-        selected_student = st.selectbox("Select the student to assign the responses", student_usernames)
+        selected_student = st.selectbox(
+            "Select the student to assign the responses", student_usernames)
 
         if st.button("Assign Assignment"):
             # Find the selected student and update their assignments
@@ -78,13 +79,12 @@ def main():
     else:
         st.warning("Please log in as an instructor to assign responses.")
 
+
 if __name__ == "__main__":
 
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
-
     st.subheader("Question & Answer Generation Admin section")
-
 
     form = """
     [
@@ -128,7 +128,7 @@ if __name__ == "__main__":
 
     try:
         st.subheader("Refining section by subject matter expert")
-            # Display the JSON output as editable text_input fields
+        # Display the JSON output as editable text_input fields
         for i, item in enumerate(st.session_state.json_output):
             st.write(f"question {i+1}")
             question = st.text_input("question", item["question"])
@@ -137,18 +137,13 @@ if __name__ == "__main__":
             # Update the JSON output with the edited fields
             st.session_state.json_output[i]["Question"] = question
             st.session_state.json_output[i]["answer"] = answer
-        
+
         # Display a download button to download the edited version
         edited_json = json.dumps(st.session_state.json_output, indent=2)
     except AttributeError:
         st.warning("Type a topic and generate some questions to refine them")
 
     main()
-
-
-
-
-
 
 
 # openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -164,7 +159,7 @@ if __name__ == "__main__":
 #     "answer": "Answer here.",
 #     "Question": "Question here?"
 #   },
-#   { 
+#   {
 #     "question": "Question here?",
 #     "answer": "Answer here.",
 #     "Question": "Question here?"
@@ -208,7 +203,7 @@ if __name__ == "__main__":
 #         # Update the JSON output with the edited fields
 #         st.session_state.json_output[i]["Question"] = question
 #         st.session_state.json_output[i]["answer"] = answer
-    
+
 #     # Display a download button to download the edited version
 #     edited_json = json.dumps(st.session_state.json_output, indent=2)
 #     b64 = base64.b64encode(edited_json.encode()).decode()
