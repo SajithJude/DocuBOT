@@ -148,9 +148,9 @@ if __name__ == "__main__":
                 # Page("Admin_Section.py", "Home", "🏠"),
                 Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("pages/Register_Users.py", "Register_Users", "💪"),
-                Page("pages/Admin_Controls.py",  "Admin_Controls", "💪"),
                 Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
-                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️")
+                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️"),
+                Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
             ])
         else:
             show_pages([
