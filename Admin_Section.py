@@ -123,7 +123,8 @@ def main():
         #         st.session_state.pop(key, None)
         #     st.write("Logged out successfully.")
     else:
-        st.write("Logged in as "+str(st.session_state['username']))
+        st.info("Logged in as "+str(st.session_state['username']) + "\n\nRole: " + str(
+            st.session_state['user_type']))
 
 
 if __name__ == "__main__":
@@ -144,8 +145,8 @@ if __name__ == "__main__":
         users = load_users()
         user = [u for u in users if u.username ==
                 st.session_state['username']][0]
-        st.sidebar.info(
-            "User Name : "+str(st.session_state['username']) + "\n\nRole: " + str(st.session_state['user_type']))
+        # st.sidebar.info(
+        #     "User Name : "+str(st.session_state['username']) + "\n\nRole: " + str(st.session_state['user_type']))
 
         if user.user_type == "instructor":
             show_pages([
