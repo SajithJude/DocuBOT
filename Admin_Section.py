@@ -149,8 +149,7 @@ if __name__ == "__main__":
                 Page("pages/DocuBOT.py",  "DocuBOT", "🎈️"),
                 Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
             ])
-        else:
-            # Admin
+        elif user.user_type == "admin":
             show_pages([
                 Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("pages/Register_Users_admin.py",
@@ -158,4 +157,8 @@ if __name__ == "__main__":
                 Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
                 Page("pages/DocuBOT.py",  "DocuBOT", "🎈️"),
                 Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
+            ])
+        else:
+            show_pages([
+                Page("Admin_Section.py", "Home", "🏠")
             ])
