@@ -2,7 +2,7 @@ import streamlit as st
 import json
 from typing import List
 from pathlib import Path
-from st_pages import Page, Section, show_pages, add_page_title
+from st_pages import Page, Section, show_pages, add_page_title, hide_pages
 
 st.set_page_config(page_title="DocuBOT", page_icon=None,
                    layout="wide")
@@ -113,6 +113,7 @@ def main():
                     save_users(users)
                     st.success(
                         f"User {username_reg} registered successfully as a {user_type}.")
+
     if st.sidebar.button("Logout"):
         # Get a list of all session state keys
         keys_to_remove = list(st.session_state.keys())
