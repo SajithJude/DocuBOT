@@ -5,7 +5,7 @@ from pathlib import Path
 from st_pages import Page, Section, show_pages, add_page_title
 
 st.set_page_config(page_title="DocuBOT", page_icon=None,
-                   layout="wide", initial_sidebar_state="collapsed")
+                   layout="wide")
 show_pages(
     [
         Page("Admin_Section.py", "Home", "🏠"),
@@ -97,33 +97,9 @@ def main():
                     user = user[0]
                     st.session_state['username'] = user.username
                     st.session_state['user_type'] = user.user_type
-                    st.write(
+                    st.success(
                         f"Logged in as {user.username} ({user.user_type}).")
 
-                    # if user_type == 'instructor':
-                    #     show_pages(
-                    #         [
-                    #             Page("Admin_Section.py", "Home", "🏠"),
-                    #             Page("pages/Instructor_Quiz_Config.py",
-                    #                  "Instructor_Quiz_Config", "💪"),
-                    #             Page("pages/DocuBOT.py", "DocuBOT", "🎈️")
-                    #             # Section("My section", icon="🎈️"),
-                    #             # Pages after a section will be indented
-                    #             # Page("DocuBOT_Quiz.py",
-                    #             #  "DocuBot Quiz", icon="💪"),
-                    #             # Unless you explicitly say in_section=False
-                    #             # Page("Not in a section", in_section=False)
-                    #         ]
-                    #     )
-                    # else:
-                    #     show_pages(
-                    #         [
-                    #             Page("Admin_Section.py", "Home", "🏠"),
-                    #             Page("pages/DocuBot_Quiz_Mode.py",
-                    #                  "DocuBot_Quiz_Mode", "💪"),
-                    #             Page("pages/DocuBot.py", "Page 2", "🎈️"),
-                    #         ]
-                    #     )
                 else:
                     st.write("Invalid username or password.")
 
@@ -139,7 +115,7 @@ def main():
                     new_user = User(username_reg, password_reg, user_type)
                     users.append(new_user)
                     save_users(users)
-                    st.write(
+                    st.success(
                         f"User {username_reg} registered successfully as a {user_type}.")
             else:
                 instructors = [
@@ -147,22 +123,22 @@ def main():
                 instructor_usernames = [
                     instructor.username for instructor in instructors]
                 selected_instructor = st.selectbox(
-                    "Select an Instructor", instructor_usernames)
+                    "Assign an Instructor", instructor_usernames)
                 username_reg = st.text_input("Username (Learner)")
                 password_reg = st.text_input(
                     "Password (Learner)", type="password")
 
-            if st.button("Register"):
-                if not username_reg or not password_reg:
-                    st.write("Please enter a username and password.")
-                else:
-                    new_user = User(
-                        username_reg, password_reg, user_type, instructor=selected_instructor)
+                if st.button("Register"):
+                    if not username_reg or not password_reg:
+                        st.write("Please enter a username and password.")
+                    else:
+                        new_user = User(username_reg, password_reg,
+                                        user_type, instructor=selected_instructor)
+                        users.append(new_user)
+                        save_users(users)
+                        st.success(
+                            f"User {username_reg} registered successfully as a {user_type}.")
 
-                    users.append(new_user)
-                    save_users(users)
-                    st.success(
-                        f"User {username_reg} registered successfully as a {user_type}.")
     if st.sidebar.button("Logout"):
         # Get a list of all session state keys
         keys_to_remove = list(st.session_state.keys())
