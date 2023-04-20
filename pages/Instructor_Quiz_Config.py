@@ -54,10 +54,6 @@ def main():
         instructor = [u for u in users if u.username ==
                       st.session_state['username']][0]
 
-        # Upload the JSON file with responses
-        # uploaded_file = st.file_uploader("Upload the responses JSON file here")
-
-        # if uploaded_file is not None:
         try:
             responses = st.session_state.json_output
         except AttributeError:
@@ -76,9 +72,10 @@ def main():
                 if student.username == selected_student:
                     student.assignments.append(
                         {"topic": st.session_state['topic'], "responses": responses})
-                    instructor.assignments.append(
-                        {"topic": st.session_state['topic'], "responses": responses})
                     break
+
+            instructor.assignments.append(
+                {"topic": st.session_state['topic'], "responses": responses})
 
             # Save the updated users to the db.json file
             save_users(users)

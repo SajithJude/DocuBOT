@@ -99,7 +99,7 @@ if "username" in st.session_state:
                     for i, question in enumerate(questions):
                         response = {
                             "question": question['question'],
-                            "response": st.session_state['past'][i]
+                            "answer": st.session_state['past'][i]
                         }
                         responses.append(response)
 
