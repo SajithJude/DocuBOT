@@ -128,13 +128,13 @@ if __name__ == "__main__":
     if "username" not in st.session_state:
         Logout = st.button("Logout")
 
-    if Logout:
-        # Get a list of all session state keys
-        keys_to_remove = list(st.session_state.keys())
-        for key in keys_to_remove:
-            # Remove each key from the session state
-            st.session_state.pop(key, None)
-        st.write("Logged out successfully.")
+        if Logout:
+            # Get a list of all session state keys
+            keys_to_remove = list(st.session_state.keys())
+            for key in keys_to_remove:
+                # Remove each key from the session state
+                st.session_state.pop(key, None)
+            st.write("Logged out successfully.")
 
     if "username" in st.session_state:
         users = load_users()
