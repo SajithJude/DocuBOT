@@ -145,7 +145,7 @@ if __name__ == "__main__":
 
         elif user.user_type == "superadmin":
             show_pages([
-                Page("Admin_Section.py", "Home", "🏠"),
+                # Page("Admin_Section.py", "Home", "🏠"),
                 Page("pages/Register_Users.py", "Register_Users", "💪"),
                 Page("pages/Admin_Controls.py",  "Admin_Controls", "💪"),
                 Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
