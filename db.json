@@ -1,7 +1,7 @@
 [
     {
-        "username": "admin",
-        "password": "admin",
+        "username": "superadmin",
+        "password": "superadmin",
         "user_type": "superadmin",
         "instructor": null,
         "assignments": []
