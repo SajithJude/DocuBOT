@@ -99,6 +99,14 @@ def main():
                 else:
                     st.write("Invalid username or password.")
 
+            if st.button("Logout"):
+                # Get a list of all session state keys
+                keys_to_remove = list(st.session_state.keys())
+                for key in keys_to_remove:
+                    # Remove each key from the session state
+                    st.session_state.pop(key, None)
+                st.write("Logged out successfully.")
+
         with tab2:
             st.subheader("Register as a Learner")
             user_type = "learner"
@@ -114,13 +122,13 @@ def main():
                     st.success(
                         f"User {username_reg} registered successfully as a {user_type}.")
 
-        if st.sidebar.button("Logout"):
-            # Get a list of all session state keys
-            keys_to_remove = list(st.session_state.keys())
-            for key in keys_to_remove:
-                # Remove each key from the session state
-                st.session_state.pop(key, None)
-            st.write("Logged out successfully.")
+        # if st.button("Logout"):
+        #     # Get a list of all session state keys
+        #     keys_to_remove = list(st.session_state.keys())
+        #     for key in keys_to_remove:
+        #         # Remove each key from the session state
+        #         st.session_state.pop(key, None)
+        #     st.write("Logged out successfully.")
 
 
 if __name__ == "__main__":
