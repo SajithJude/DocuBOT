@@ -9,13 +9,9 @@ st.set_page_config(page_title="DocuBOT", page_icon=None,
 show_pages(
     [
         Page("Admin_Section.py", "Home", "🏠"),
-        Page("pages/Admin_Controls.py", "Admin Control", "💪"),
+
     ]
 )
-
-# favicon = "favicon.ac8d93a.69085235180674d80d902fdc4b848d0b (1).png"
-# st.set_page_config(page_title="DocuBOT", page_icon=favicon)
-# st.image("Flipick_Logo-1 (1)-fotor-bg-remover-20230419132039.png", width=150)
 
 
 def set_style():
@@ -104,36 +100,15 @@ def main():
                     st.write("Invalid username or password.")
 
         with tab2:
-            st.subheader("Register")
-            user_type = st.radio("Select user type",
-                                 ("learner", "instructor"), horizontal=True,)
-            if user_type == "instructor":
-                username_reg = st.text_input("Username (Instructor)")
-                password_reg = st.text_input(
-                    "Password (Instructor)", type="password")
-                if username_reg and password_reg:
-                    new_user = User(username_reg, password_reg, user_type)
-                    users.append(new_user)
-                    save_users(users)
-                    st.success(
-                        f"User {username_reg} registered successfully as a {user_type}.")
-            else:
-                instructors = [
-                    user for user in users if user.user_type == "instructor"]
-                instructor_usernames = [
-                    instructor.username for instructor in instructors]
-                selected_instructor = st.selectbox(
-                    "Assign an Instructor", instructor_usernames)
-                username_reg = st.text_input("Username (Learner)")
-                password_reg = st.text_input(
-                    "Password (Learner)", type="password")
-
+            st.subheader("Register as a Learner")
+            user_type = "learner"
+            username_reg = st.text_input("Username (Learner)")
+            password_reg = st.text_input("Password (Learner)", type="password")
             if st.button("Register"):
                 if not username_reg or not password_reg:
                     st.write("Please enter a username and password.")
                 else:
-                    new_user = User(username_reg, password_reg,
-                                    user_type, instructor=selected_instructor)
+                    new_user = User(username_reg, password_reg, user_type)
                     users.append(new_user)
                     save_users(users)
                     st.success(
@@ -147,18 +122,6 @@ def main():
             st.session_state.pop(key, None)
         st.write("Logged out successfully.")
 
-    # if st.button("Logout"):
-    #     st.session_state.pop('username', None)
-    #     st.session_state.pop('user_type', None)
-    #     st.write("Logged out successfully.")
-    #     # show_pages(
-    #     #     [
-    #     #         Page("Admin_Section.py", "Home", "🏠"),
-    #     #         Page("pages/Login_new.py", "Login / Signup", "🎈️"),
-    #     #         Page("pages/Admin_Controls.py", "Admin Control", "💪"),
-    #     #     ]
-    #     # )
-
 
 if __name__ == "__main__":
     main()
@@ -166,16 +129,25 @@ if __name__ == "__main__":
         users = load_users()
         user = [u for u in users if u.username ==
                 st.session_state['username']][0]
+
         if user.user_type == "instructor":
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠"),
-                Page("pages/Admin_Controls.py",  "Admin_Controls", "💪"),
                 Page("pages/Instructor_Quiz_Config.py",
                      "Question_Generation", "🎈️")
             ])
+
+        elif user.user_type == "learner":
+            show_pages([
+                Page("Admin_Section.py", "Home", "🏠"),
+                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️")
+            ])
+
         else:
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠"),
+                Page("pages/Register_Users.py", "Home", "🏠"),
                 Page("pages/Admin_Controls.py",  "Admin_Controls", "💪"),
-                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️")
+                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
+                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️")
             ])
