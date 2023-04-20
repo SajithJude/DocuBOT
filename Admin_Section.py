@@ -121,7 +121,8 @@ def main():
         #         # Remove each key from the session state
         #         st.session_state.pop(key, None)
         #     st.write("Logged out successfully.")
-
+    else:
+        st.write("Logged in as "+str(st.session_state['username']))
 
 if __name__ == "__main__":
     main()
