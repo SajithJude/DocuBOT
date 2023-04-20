@@ -123,7 +123,7 @@ def main():
         #     st.write("Logged out successfully.")
     else:
         st.write("Logged in as "+str(st.session_state['username']))
-
+st.sidebar.write("Logged in as "+str(st.session_state['username']))
 if __name__ == "__main__":
     main()
     if "username" in st.session_state:
@@ -141,7 +141,7 @@ if __name__ == "__main__":
         users = load_users()
         user = [u for u in users if u.username ==
                 st.session_state['username']][0]
-        st.sidebar.write("Logged in as "+str(st.session_state['username']))
+        
         if user.user_type == "instructor":
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠"),
