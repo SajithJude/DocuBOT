@@ -32,5 +32,5 @@ if st.button("Logout"):
 
 
 show_pages([
-    Page("../Admin_Section.py", "Home", "🏠"),
+    Page("Admin_Section.py", "Home", "🏠"),
 ])
