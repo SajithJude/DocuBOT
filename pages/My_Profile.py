@@ -8,21 +8,21 @@ st.title("My Profile")
 
 # if "username" in st.session_state:
 
-username = st.session_state['username']
-password = st.session_state['password']
-user_type = st.session_state['user_type']
+# username = st.session_state['username']
+# password = st.session_state['password']
+# user_type = st.session_state['user_type']
 
-st.write("User Name")
-st.write(username)
+# st.write("User Name")
+# st.write(username)
 
-st.write('')
+# st.write('')
 
-st.write("User Type")
-st.write(user_type)
+# st.write("User Type")
+# st.write(user_type)
 
-st.write("Hello")
+st.write("Welcome to DocuBOT")
 
-if st.sidebar.button("Logout"):
+if st.button.button("Logout"):
     # Get a list of all session state keys
     keys_to_remove = list(st.session_state.keys())
     for key in keys_to_remove:
