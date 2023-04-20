@@ -150,6 +150,7 @@ if __name__ == "__main__":
                 Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
             ])
         else:
+            # Admin
             show_pages([
                 Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("pages/Register_Users_admin.py",
