@@ -145,7 +145,7 @@ if __name__ == "__main__":
         user = [u for u in users if u.username ==
                 st.session_state['username']][0]
         st.sidebar.info(
-            "Logged in as "+str(st.session_state['username']) + "\n" + str(st.session_state['user_type']))
+            "Logged in as "+str(st.session_state['username']) + "\nRole: " + str(st.session_state['user_type']))
 
         if user.user_type == "instructor":
             show_pages([
