@@ -124,15 +124,19 @@ if __name__ == "__main__":
 
         if user.user_type == "instructor":
             show_pages([
-                Page("Admin_Section.py", "Home", "🏠"),
+                # Page("Admin_Section.py", "Home", "🏠"),
+                Page("pages/My_Profile.py", "My Profile", "🏠"),
                 Page("pages/Instructor_Quiz_Config.py",
-                     "Question_Generation", "🎈️")
+                     "Question_Generation", "🎈️"),
+                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️")
             ])
 
         elif user.user_type == "learner":
             show_pages([
-                Page("Admin_Section.py", "Home", "🏠"),
-                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️")
+                # Page("Admin_Section.py", "Home", "🏠"),
+                Page("pages/My_Profile.py", "My Profile", "🏠"),
+                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
+                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️")
             ])
 
         elif user.user_type == "superadmin":
