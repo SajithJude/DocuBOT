@@ -138,7 +138,7 @@ if __name__ == "__main__":
             # st.session_state.json_output[i]["Question"] = question
             # st.session_state.json_output[i]["answer"] = answer
             st.session_state.json_output[i] = {
-                "question": question, "answer": answer}
+                "Question": question, "Answer": answer}
 
         # Display a download button to download the edited version
         edited_json = json.dumps(st.session_state.json_output, indent=2)
