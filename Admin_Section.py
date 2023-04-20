@@ -123,7 +123,7 @@ def main():
         #     st.write("Logged out successfully.")
     else:
         st.write("Logged in as "+str(st.session_state['username']))
-st.sidebar.write("Logged in as "+str(st.session_state['username']))
+st.sidebar.write("Logged in as ")
 if __name__ == "__main__":
     main()
     if "username" in st.session_state:
