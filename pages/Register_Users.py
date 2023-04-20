@@ -73,81 +73,61 @@ def main():
     container = st.container()
 
     with container:
-        tab1, tab2 = st.tabs(["Login", "Register"])
 
-        with tab1:
-            st.subheader("Login")
-            username = st.text_input("Username")
-            password = st.text_input("Password", type="password")
+        st.subheader("Register New User")
+        user_type = st.radio("Select user type",
+                             ("learner", "instructor", "admin"), horizontal=True,)
 
-            if st.button("Login"):
-                user = [user for user in users if user.username ==
-                        username and user.password == password]
-                if user:
-                    user = user[0]
-                    st.session_state['username'] = user.username
-                    st.session_state['user_type'] = user.user_type
-                    st.success(
-                        f"Logged in as {user.username} ({user.user_type}).")
-
+        if user_type == "instructor":
+            username_reg = st.text_input("Username (Instructor)")
+            password_reg = st.text_input(
+                "Password (Instructor)", type="password")
+            if st.button("Register"):
+                if not username_reg or not password_reg:
+                    st.write("Please enter a username and password.")
                 else:
-                    st.write("Invalid username or password.")
+                    new_user = User(username_reg, password_reg, user_type)
+                    users.append(new_user)
+                    save_users(users)
+                    st.success(
+                        f"User {username_reg} registered successfully as a {user_type}.")
 
-        with tab2:
-            st.subheader("Register")
-            user_type = st.radio("Select user type",
-                                 ("learner", "instructor", "admin"), horizontal=True,)
+        elif user_type == "admin":
+            username_reg = st.text_input("Username (Admin)")
+            password_reg = st.text_input(
+                "Password (Admin)", type="password")
 
-            if user_type == "instructor":
-                username_reg = st.text_input("Username (Instructor)")
-                password_reg = st.text_input(
-                    "Password (Instructor)", type="password")
-                if st.button("Register"):
-                    if not username_reg or not password_reg:
-                        st.write("Please enter a username and password.")
-                    else:
-                        new_user = User(username_reg, password_reg, user_type)
-                        users.append(new_user)
-                        save_users(users)
-                        st.success(
-                            f"User {username_reg} registered successfully as a {user_type}.")
+            if st.button("Register"):
+                if not username_reg or not password_reg:
+                    st.write("Please enter a username and password.")
+                else:
+                    new_user = User(username_reg, password_reg, user_type)
+                    users.append(new_user)
+                    save_users(users)
+                    st.success(
+                        f"User {username_reg} registered successfully as a {user_type}.")
 
-            elif user_type == "admin":
-                username_reg = st.text_input("Username (Admin)")
-                password_reg = st.text_input(
-                    "Password (Admin)", type="password")
+        else:
+            instructors = [
+                user for user in users if user.user_type == "instructor"]
+            instructor_usernames = [
+                instructor.username for instructor in instructors]
+            selected_instructor = st.selectbox(
+                "Assign an Instructor", instructor_usernames)
+            username_reg = st.text_input("Username (Learner)")
+            password_reg = st.text_input(
+                "Password (Learner)", type="password")
 
-                if st.button("Register"):
-                    if not username_reg or not password_reg:
-                        st.write("Please enter a username and password.")
-                    else:
-                        new_user = User(username_reg, password_reg, user_type)
-                        users.append(new_user)
-                        save_users(users)
-                        st.success(
-                            f"User {username_reg} registered successfully as a {user_type}.")
-
-            else:
-                instructors = [
-                    user for user in users if user.user_type == "instructor"]
-                instructor_usernames = [
-                    instructor.username for instructor in instructors]
-                selected_instructor = st.selectbox(
-                    "Assign an Instructor", instructor_usernames)
-                username_reg = st.text_input("Username (Learner)")
-                password_reg = st.text_input(
-                    "Password (Learner)", type="password")
-
-                if st.button("Register"):
-                    if not username_reg or not password_reg:
-                        st.write("Please enter a username and password.")
-                    else:
-                        new_user = User(username_reg, password_reg,
-                                        user_type, instructor=selected_instructor)
-                        users.append(new_user)
-                        save_users(users)
-                        st.success(
-                            f"User {username_reg} registered successfully as a {user_type}.")
+            if st.button("Register"):
+                if not username_reg or not password_reg:
+                    st.write("Please enter a username and password.")
+                else:
+                    new_user = User(username_reg, password_reg,
+                                    user_type, instructor=selected_instructor)
+                    users.append(new_user)
+                    save_users(users)
+                    st.success(
+                        f"User {username_reg} registered successfully as a {user_type}.")
 
     if st.sidebar.button("Logout"):
         # Get a list of all session state keys
