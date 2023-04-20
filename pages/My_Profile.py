@@ -4,32 +4,29 @@ from typing import List
 from pathlib import Path
 from st_pages import Page, Section, show_pages, add_page_title
 
+st.title("My Profile")
 
-def main():
+if "username" in st.session_state:
 
-    st.title("My Profile")
+    username = st.session_state['username']
+    password = st.session_state['password']
+    user_type = st.session_state['user_type']
 
-    if "username" in st.session_state:
+st.write("User Name")
+st.write(username)
 
-        username = st.session_state['username']
-        password = st.session_state['password']
-        user_type = st.session_state['user_type']
+st.write('')
 
-    st.write("User Name")
-    st.write(username)
+st.write("User Type")
+st.write(user_type)
 
-    st.write('')
-
-    st.write("User Type")
-    st.write(user_type)
-
-    if st.sidebar.button("Logout"):
-        # Get a list of all session state keys
-        keys_to_remove = list(st.session_state.keys())
-        for key in keys_to_remove:
-            # Remove each key from the session state
-            st.session_state.pop(key, None)
-        st.write("Logged out successfully.")
-        show_pages([
-            Page("Admin_Section.py", "Home", "🏠"),
-        ])
+if st.sidebar.button("Logout"):
+    # Get a list of all session state keys
+    keys_to_remove = list(st.session_state.keys())
+    for key in keys_to_remove:
+        # Remove each key from the session state
+        st.session_state.pop(key, None)
+    st.write("Logged out successfully.")
+    show_pages([
+        Page("Admin_Section.py", "Home", "🏠"),
+    ])
