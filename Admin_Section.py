@@ -125,7 +125,10 @@ def main():
 
 if __name__ == "__main__":
     main()
-    if st.button("Logout"):
+    if "username" not in st.session_state:
+        Logout = st.button("Logout")
+
+    if Logout:
         # Get a list of all session state keys
         keys_to_remove = list(st.session_state.keys())
         for key in keys_to_remove:
