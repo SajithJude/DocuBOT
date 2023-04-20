@@ -22,7 +22,7 @@ st.title("My Profile")
 
 st.write("Welcome to DocuBOT")
 
-if st.button("Logout"):
+if st.button("Logout", page="home"):
     # Get a list of all session state keys
     keys_to_remove = list(st.session_state.keys())
     for key in keys_to_remove:
@@ -30,6 +30,6 @@ if st.button("Logout"):
         st.session_state.pop(key, None)
     st.write("Logged out successfully.")
 
-    show_pages([
-        Page("../Admin_Section.py", "Home", "🏠")
-    ])
+    # show_pages([
+    #     Page("../Admin_Section.py", "Home", "🏠")
+    # ])
