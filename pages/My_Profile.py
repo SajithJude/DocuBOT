@@ -34,3 +34,4 @@ if st.button("Logout"):
     show_pages([
         Page("Admin_Section.py", "Home", "🏠")
     ])
+    st.experimental_rerun()
