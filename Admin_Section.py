@@ -79,7 +79,7 @@ def main():
     container = st.container()
 
     with container:
-        tab1, tab2 = st.tabs(["Login", "Register"])
+        tab1, tab2 = st.tabs(["Login", "Register as a Learner"])
 
         with tab1:
             st.subheader("Login")
@@ -146,11 +146,18 @@ if __name__ == "__main__":
         elif user.user_type == "superadmin":
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠"),
-                Page("pages/Register_Users.py", "Register_Users" "💪"),
+                Page("pages/Register_Users.py", "Register_Users", "💪"),
                 Page("pages/Admin_Controls.py",  "Admin_Controls", "💪"),
                 Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
                 Page("pages/DocuBOT.py",  "DocuBOT", "🎈️")
             ])
+            if st.sidebar.button("Logout"):
+                # Get a list of all session state keys
+                keys_to_remove = list(st.session_state.keys())
+                for key in keys_to_remove:
+                    # Remove each key from the session state
+                    st.session_state.pop(key, None)
+                st.write("Logged out successfully.")
         else:
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠")
