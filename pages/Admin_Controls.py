@@ -129,8 +129,4 @@ def main():
 
 
 if __name__ == "__main__":
-    password = st.text_input("Enter password", type="password")
-    if password == "flipick":
-        main()
-    else:
-        st.warning("Admins Please enter Password to manage books, Learners are only allowed to use the bot, please Visit the DocuBOT section in the Menu")
+    main()
