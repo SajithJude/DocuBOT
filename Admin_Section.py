@@ -125,7 +125,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-    if "username" not in st.session_state:
+    if "username" in st.session_state:
         Logout = st.button("Logout")
         pass
         if Logout:
