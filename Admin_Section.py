@@ -13,6 +13,7 @@ show_pages(
         Page("pages/Login_new.py", "Login / Signup", "🎈️"),
         Page("pages/Admin_Controls.py", "Admin Control", "💪"),
         Page("pages/DocuBOT.py", "DocuBOT", "💪"),
+        Page("pages/DocuBOT.py", "DocuBOT", "💪"),
     ]
 )
 
