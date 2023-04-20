@@ -139,12 +139,18 @@ if __name__ == "__main__":
             show_pages([
                 # Page("Admin_Section.py", "Home", "🏠"),
                 Page("pages/My_Profile.py", "My Profile", "🏠"),
-                Page("pages/Register_Users_super.py", "Register_Users", "💪"),
+                Page("pages/Register_Users_super.py",
+                     "Register New Users", "💪"),
                 Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
                 Page("pages/DocuBOT.py",  "DocuBOT", "🎈️"),
                 Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
             ])
         else:
             show_pages([
-                Page("Admin_Section.py", "Home", "🏠")
+                Page("pages/My_Profile.py", "My Profile", "🏠"),
+                Page("pages/Register_Users_admin.py",
+                     "Register New Users", "💪"),
+                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️"),
+                Page("pages/DocuBOT.py",  "DocuBOT", "🎈️"),
+                Page("pages/Admin_Controls.py",  "Admin_Controls", "💪")
             ])
