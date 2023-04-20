@@ -144,7 +144,8 @@ if __name__ == "__main__":
         users = load_users()
         user = [u for u in users if u.username ==
                 st.session_state['username']][0]
-        st.sidebar.write("Logged in as "+str(st.session_state['username']))
+        st.sidebar.info(
+            "Logged in as "+str(st.session_state['username'])+str(st.session_state['user_type']))
 
         if user.user_type == "instructor":
             show_pages([
