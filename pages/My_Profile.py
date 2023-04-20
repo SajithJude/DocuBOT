@@ -31,7 +31,7 @@ if st.button("Logout"):
         st.session_state.pop(key, None)
     st.write("Logged out successfully.")
     # switch_page('Admin_Section')
-    show_pages([
-        Page("Admin_Section.py", "Home", "🏠")
-    ])
+    # show_pages([
+    #     Page("Admin_Section.py", "Home", "🏠")
+    # ])
     # st.experimental_rerun()
