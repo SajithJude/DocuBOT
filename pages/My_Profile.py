@@ -6,19 +6,21 @@ from st_pages import Page, Section, show_pages, add_page_title
 
 st.title("My Profile")
 
-if "username" in st.session_state:
+# if "username" in st.session_state:
 
-    username = st.session_state['username']
-    password = st.session_state['password']
-    user_type = st.session_state['user_type']
+#     username = st.session_state['username']
+#     password = st.session_state['password']
+#     user_type = st.session_state['user_type']
 
-st.write("User Name")
-st.write(username)
+# st.write("User Name")
+# st.write(username)
 
-st.write('')
+# st.write('')
 
-st.write("User Type")
-st.write(user_type)
+# st.write("User Type")
+# st.write(user_type)
+
+st.write("Hello")
 
 if st.sidebar.button("Logout"):
     # Get a list of all session state keys
