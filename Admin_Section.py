@@ -135,6 +135,7 @@ if __name__ == "__main__":
                 # Remove each key from the session state
                 st.session_state.pop(key, None)
             st.write("Logged out successfully.")
+            st.experimental_rerun()
 
     if "username" in st.session_state:
         users = load_users()
