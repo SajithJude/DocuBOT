@@ -71,6 +71,7 @@ def main():
             for student in students:
                 if student.username == selected_student:
                     student.assignments.extend(responses)
+                    st.write(response)
                     break
 
             # Save the updated users to the db.json file
