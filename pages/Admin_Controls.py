@@ -124,8 +124,8 @@ def main():
         do_action = button_phold.button(
             button_type, key=i, on_click=delete_file, args=(DATA_DIR, Name))
 
-    users_dicts = load_users_dicts()
-    st.table(users_dicts)
+    # users_dicts = load_users_dicts()
+    # st.table(users_dicts)
 
 
 if __name__ == "__main__":
