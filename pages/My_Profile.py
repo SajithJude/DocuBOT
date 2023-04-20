@@ -30,8 +30,4 @@ if st.button("Logout"):
         # Remove each key from the session state
         st.session_state.pop(key, None)
     st.write("Logged out successfully.")
-
-    show_pages([
-        Page("../Admin_Section.py", "Home", "🏠")
-    ])
     # switch_page('Admin_Section')
