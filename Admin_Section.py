@@ -93,7 +93,7 @@ def main():
         with tab2:
             st.subheader("Register")
             user_type = st.radio("Select user type",
-                                 ("student", "instructor"), horizontal=True,)
+                                 ("learner", "instructor"), horizontal=True,)
             if user_type == "instructor":
                 username_reg = st.text_input("Username (Instructor)")
                 password_reg = st.text_input(
