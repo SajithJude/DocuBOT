@@ -22,7 +22,7 @@ st.title("My Profile")
 
 st.write("Welcome to DocuBOT")
 
-if st.button.button("Logout"):
+if st.button("Logout"):
     # Get a list of all session state keys
     keys_to_remove = list(st.session_state.keys())
     for key in keys_to_remove:
