@@ -95,17 +95,15 @@ def main():
                     st.session_state['user_type'] = user.user_type
                     st.success(
                         f"Logged in as {user.username} ({user.user_type}).")
-
+                    if st.button("Logout"):
+                        # Get a list of all session state keys
+                        keys_to_remove = list(st.session_state.keys())
+                        for key in keys_to_remove:
+                            # Remove each key from the session state
+                            st.session_state.pop(key, None)
+                        st.write("Logged out successfully.")
                 else:
                     st.write("Invalid username or password.")
-
-            if st.button("Logout"):
-                # Get a list of all session state keys
-                keys_to_remove = list(st.session_state.keys())
-                for key in keys_to_remove:
-                    # Remove each key from the session state
-                    st.session_state.pop(key, None)
-                st.write("Logged out successfully.")
 
         with tab2:
             st.subheader("Register as a Learner")
