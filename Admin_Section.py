@@ -150,7 +150,7 @@ if __name__ == "__main__":
                 Page("pages/Instructor_Quiz_Config.py",
                      "Question_Generation", " 📕"),
                 Page("pages/DocuBOT.py",  "DocuBOT", ":books:"),
-                Page("pages/instructor_control.py",
+                Page("pages/instructor_controls.py",
                      "Instructor Controls", "🧑🏻‍🏫")
             ])
 
