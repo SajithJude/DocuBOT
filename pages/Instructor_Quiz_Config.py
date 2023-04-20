@@ -45,8 +45,8 @@ def save_users(users: List[User]):
 
 
 def main():
-    st.title("Assignment Submission")
 
+    st.title("Assignment Submission")
     users = load_users()
 
     # Check if the user is logged in and is an instructor
@@ -74,7 +74,10 @@ def main():
             # Find the selected student and update their assignments
             for student in students:
                 if student.username == selected_student:
-                    student.assignments.extend(responses)
+                    student.assignments.append(
+                        {"topic": st.session_state['topic'], "responses": responses})
+                    instructor.assignments.append(
+                        {"topic": st.session_state['topic'], "responses": responses})
                     break
 
             # Save the updated users to the db.json file
@@ -85,6 +88,7 @@ def main():
 
 
 if __name__ == "__main__":
+
     users = load_users()
     main()
 
@@ -113,18 +117,18 @@ if __name__ == "__main__":
             """
 
             topic = st.text_input("Enter topic here")
-            num_quest = st.slider(
-                'Number of questions to generate', min_value=1, max_value=10, step=1)
 
+            num_quest = st.slider('Number of questions to generate', 0, 10, 1)
             result = st.button("Submit")
 
             if result:
+                st.session_state['topic'] = topic
                 prompt = f"generate {num_quest} essay type questions with answers on the topic of {topic}, with the all the possible correct comprehensive answers, show the output in following json list format:\n {form}."
                 response = openai.Completion.create(
                     model="text-davinci-003",
                     prompt=prompt,
                     temperature=0.56,
-                    max_tokens=3000,
+                    max_tokens=2100,
                     top_p=1,
                     frequency_penalty=0.35,
                     presence_penalty=0
