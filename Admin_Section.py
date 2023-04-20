@@ -4,16 +4,16 @@ from typing import List
 from pathlib import Path
 from st_pages import Page, Section, show_pages, add_page_title
 
-favicon = "favicon.ac8d93a.69085235180674d80d902fdc4b848d0b (1).png"
-st.set_page_config(page_title="DocuBOT", page_icon=favicon)
-st.image("Flipick_Logo-1 (1)-fotor-bg-remover-20230419132039.png", width=150)
-
 show_pages(
     [
         Page("Admin_Section.py", "Home", "🏠"),
         Page("pages/Admin_Controls.py", "Admin Control", "💪"),
     ]
 )
+
+favicon = "favicon.ac8d93a.69085235180674d80d902fdc4b848d0b (1).png"
+st.set_page_config(page_title="DocuBOT", page_icon=favicon)
+st.image("Flipick_Logo-1 (1)-fotor-bg-remover-20230419132039.png", width=150)
 
 
 def set_style():
