@@ -7,8 +7,15 @@
         "assignments": []
     },
     {
-        "username": "instructor1",
-        "password": "password1",
+        "username": "admin",
+        "password": "admin",
+        "user_type": "admin",
+        "instructor": null,
+        "assignments": []
+    },
+    {
+        "username": "instructor",
+        "password": "instructor",
         "user_type": "instructor",
         "instructor": null,
         "assignments": []
@@ -21,8 +28,8 @@
         "assignments": []
     },
     {
-        "username": "learner1",
-        "password": "password3",
+        "username": "learner",
+        "password": "learner",
         "user_type": "learner",
         "instructor": "instructor1",
         "assignments": []
