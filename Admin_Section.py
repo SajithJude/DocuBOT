@@ -169,6 +169,13 @@ if __name__ == "__main__":
         if user.user_type == "instructor":
             show_pages([
                 Page("Admin_Section.py", "Home", "🏠"),
-                Page("pages/Admin_Controls.py",  "Admin_Controls"),
-                Page("pages/Instructor_Quiz_Config.py",  "Question_Generation")
+                Page("pages/Admin_Controls.py",  "Admin_Controls", "💪"),
+                Page("pages/Instructor_Quiz_Config.py",
+                     "Question_Generation", "🎈️")
+            ])
+        else:
+            show_pages([
+                Page("Admin_Section.py", "Home", "🏠"),
+                Page("pages/Admin_Controls.py",  "Admin_Controls", "💪"),
+                Page("pages/DocuBOT_Quiz_Mode.py",  "DocuBOT_Quiz_Mode", "🎈️")
             ])
