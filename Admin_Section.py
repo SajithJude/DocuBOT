@@ -98,7 +98,7 @@ def main():
 
                     else:
                         st.write("Invalid username or password.")
-
+                    st.experimental_rerun()
             with tab2:
                 st.subheader("Register as a Learner")
                 user_type = "learner"
