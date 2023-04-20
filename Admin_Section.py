@@ -6,12 +6,12 @@ from st_pages import Page, Section, show_pages, add_page_title
 
 st.set_page_config(page_title="DocuBOT", page_icon=None,
                    layout="wide")
-show_pages(
-    [
-        Page("Admin_Section.py", "Home", "🏠"),
+# show_pages(
+#     [
+#         Page("Admin_Section.py", "Home", "🏠"),
 
-    ]
-)
+#     ]
+# )
 
 
 def set_style():
