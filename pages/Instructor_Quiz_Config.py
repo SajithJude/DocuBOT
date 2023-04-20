@@ -102,7 +102,8 @@ if __name__ == "__main__":
     """
 
     topic = st.text_input("Enter topic here")
-    num_quest = st.slider('Number of questions to generate', 0, 10, 1)
+    quest = st.slider('Number of questions to generate', 0, 10, 1)
+    num_quest = quest - 1
     result = st.button("Submit")
 
     if result:
@@ -135,10 +136,10 @@ if __name__ == "__main__":
             answer = st.text_area("answer", item["answer"])
 
             # Update the JSON output with the edited fields
-            # st.session_state.json_output[i]["Question"] = question
-            # st.session_state.json_output[i]["answer"] = answer
-            st.session_state.json_output[i] = {
-                "Question": question, "Answer": answer}
+            st.session_state.json_output[i]["Question"] = question
+            st.session_state.json_output[i]["answer"] = answer
+            # st.session_state.json_output[i] = {
+            #     "Question": question, "Answer": answer}
 
         # Display a download button to download the edited version
         edited_json = json.dumps(st.session_state.json_output, indent=2)
