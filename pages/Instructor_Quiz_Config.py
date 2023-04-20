@@ -113,8 +113,9 @@ if __name__ == "__main__":
             """
 
             topic = st.text_input("Enter topic here")
-            num = st.slider('Number of questions to generate', 0, 10, 1)
-            num_quest = num - 1
+            num_quest = st.slider(
+                'Number of questions to generate', min_value=1, max_value=10, step=1)
+
             result = st.button("Submit")
 
             if result:
