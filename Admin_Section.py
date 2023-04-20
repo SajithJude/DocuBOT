@@ -75,44 +75,44 @@ def main():
     set_style()
 
     users = load_users()
+    if "username" in st.session_state:
+        container = st.container()
 
-    container = st.container()
+        with container:
+            tab1, tab2 = st.tabs(["Login", "Register as a Learner"])
 
-    with container:
-        tab1, tab2 = st.tabs(["Login", "Register as a Learner"])
+            with tab1:
+                st.subheader("Login")
+                username = st.text_input("Username")
+                password = st.text_input("Password", type="password")
 
-        with tab1:
-            st.subheader("Login")
-            username = st.text_input("Username")
-            password = st.text_input("Password", type="password")
+                if st.button("Login"):
+                    user = [user for user in users if user.username ==
+                            username and user.password == password]
+                    if user:
+                        user = user[0]
+                        st.session_state['username'] = user.username
+                        st.session_state['user_type'] = user.user_type
+                        st.success(
+                            f"Logged in as {user.username} ({user.user_type}).")
 
-            if st.button("Login"):
-                user = [user for user in users if user.username ==
-                        username and user.password == password]
-                if user:
-                    user = user[0]
-                    st.session_state['username'] = user.username
-                    st.session_state['user_type'] = user.user_type
-                    st.success(
-                        f"Logged in as {user.username} ({user.user_type}).")
+                    else:
+                        st.write("Invalid username or password.")
 
-                else:
-                    st.write("Invalid username or password.")
-
-        with tab2:
-            st.subheader("Register as a Learner")
-            user_type = "learner"
-            username_reg = st.text_input("Username (Learner)")
-            password_reg = st.text_input("Password (Learner)", type="password")
-            if st.button("Register"):
-                if not username_reg or not password_reg:
-                    st.write("Please enter a username and password.")
-                else:
-                    new_user = User(username_reg, password_reg, user_type)
-                    users.append(new_user)
-                    save_users(users)
-                    st.success(
-                        f"User {username_reg} registered successfully as a {user_type}.")
+            with tab2:
+                st.subheader("Register as a Learner")
+                user_type = "learner"
+                username_reg = st.text_input("Username (Learner)")
+                password_reg = st.text_input("Password (Learner)", type="password")
+                if st.button("Register"):
+                    if not username_reg or not password_reg:
+                        st.write("Please enter a username and password.")
+                    else:
+                        new_user = User(username_reg, password_reg, user_type)
+                        users.append(new_user)
+                        save_users(users)
+                        st.success(
+                            f"User {username_reg} registered successfully as a {user_type}.")
 
         # if st.button("Logout"):
         #     # Get a list of all session state keys
