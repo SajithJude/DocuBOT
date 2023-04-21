@@ -135,7 +135,7 @@ def main():
             col1, col2, col3 = st.beta_columns((1, 6, 1))
 
             with col2:
-                st.title('''
+                st.info('''
                     Elevate your learning experience with our innovative educational app, designed to streamline communication, create personalized quizzes, and deliver interactive learning for all. Key features include:
 
                     - Hassle-free login/logout
