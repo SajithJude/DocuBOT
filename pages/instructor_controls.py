@@ -60,7 +60,7 @@ def view_responses(users):
 
     topics = list(set([a["topic"] for a in selected_student_obj.assignments]))
     selected_topic = st.selectbox("Select a topic to view responses", topics)
-    grade = st.button("grade")
+    grade = st.button("Grade")
     col1, col2 = st.columns(2)
     # if col1.button("View Responses"):
     student_ans = []

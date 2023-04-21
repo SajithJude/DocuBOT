@@ -123,8 +123,24 @@ def main():
         #         st.session_state.pop(key, None)
         #     st.write("Logged out successfully.")
     else:
-        st.info("Logged in as "+str(st.session_state['username']) + "\n\nRole: " + str(
-            st.session_state['user_type']))
+        st.info("Hi, "+str(st.session_state['username']))
+        # st.info("Logged in as "+str(st.session_state['username']) + "\n\nRole: " + str(
+        #     st.session_state['user_type']))
+        st.subheader("Welcome to DocuBOT")
+        container = st.container()
+        with container:
+            st.info('''
+                Elevate your learning experience with our innovative educational app, designed to streamline communication, create personalized quizzes, and deliver interactive learning for all. Key features include:
+
+                    - Hassle-free login/logout
+                    - Customizable quizzes and question generation
+                    - Engaging DocuBOT chat system for instant access to educational material
+                    - Efficient grading and user management tools
+                    - Secure registration for various user roles
+                    - Advanced controls for uploading books and creating indexes
+                
+                Unlock the power of AI-driven education and revolutionize the way you learn and teach. Embrace success by getting started with our app today!
+            ''')
 
 
 if __name__ == "__main__":

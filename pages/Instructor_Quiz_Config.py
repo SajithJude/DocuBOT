@@ -57,7 +57,7 @@ def main():
         try:
             responses = st.session_state.json_output
         except AttributeError:
-            st.info("generate questions to get started")
+            st.info("Generate questions to get started")
 
         # Choose a student to assign the responses
         students = [u for u in users if u.user_type ==
