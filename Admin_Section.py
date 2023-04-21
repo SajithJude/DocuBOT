@@ -123,7 +123,7 @@ def main():
         #         st.session_state.pop(key, None)
         #     st.write("Logged out successfully.")
     else:
-        st.info("Hi, "+str(st.session_state['username']))
+        st.info("Hi "+str(st.session_state['username'])+" ,")
         # st.info("Logged in as "+str(st.session_state['username']) + "\n\nRole: " + str(
         #     st.session_state['user_type']))
         st.subheader("Welcome to DocuBOT")
