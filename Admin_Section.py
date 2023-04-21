@@ -133,7 +133,8 @@ def main():
                 '<style>h1{white-space: pre-wrap; word-wrap: break-word;}</style>', unsafe_allow_html=True)
 
             col1, col2, col3 = st.beta_columns((1, 6, 1))
-
+            with col1:
+                st.info("")
             with col2:
                 st.info('''
                     Elevate your learning experience with our innovative educational app, designed to streamline communication, create personalized quizzes, and deliver interactive learning for all. Key features include:
@@ -147,6 +148,8 @@ def main():
 
                     Unlock the power of AI-driven education and revolutionize the way you learn and teach. Embrace success by getting started with our app today!
                 ''')
+            with col3:
+                st.info("")
 
 
 if __name__ == "__main__":
