@@ -129,8 +129,14 @@ def main():
         st.subheader("Welcome to DocuBOT")
         container = st.container()
         with container:
-            st.info('''
-                Elevate your learning experience with our innovative educational app, designed to streamline communication, create personalized quizzes, and deliver interactive learning for all. Key features include:
+            st.markdown(
+                '<style>h1{white-space: pre-wrap; word-wrap: break-word;}</style>', unsafe_allow_html=True)
+
+            col1, col2, col3 = st.beta_columns((1, 6, 1))
+
+            with col2:
+                st.title('''
+                    Elevate your learning experience with our innovative educational app, designed to streamline communication, create personalized quizzes, and deliver interactive learning for all. Key features include:
 
                     - Hassle-free login/logout
                     - Customizable quizzes and question generation
@@ -138,9 +144,9 @@ def main():
                     - Efficient grading and user management tools
                     - Secure registration for various user roles
                     - Advanced controls for uploading books and creating indexes
-                
-                Unlock the power of AI-driven education and revolutionize the way you learn and teach. Embrace success by getting started with our app today!
-            ''')
+
+                    Unlock the power of AI-driven education and revolutionize the way you learn and teach. Embrace success by getting started with our app today!
+                ''')
 
 
 if __name__ == "__main__":
